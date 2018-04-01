@@ -1,6 +1,5 @@
-function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
-    norm_peps,species,groupnum,donors,ptms,norm_method,pepmin,pep_fdr,nDB)
 %% BayesENproteomics wrapper function called by user.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   Output -
 %       ProteinOutput - Structure containing protein- and PTM-level
 %       quantification
@@ -52,7 +51,10 @@ function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
 %
 %       nDB - Optional. Scalar number indicating number of databases used
 %       for peptide annotation. Defaults to 1.
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
+    norm_peps,species,groupnum,donors,ptms,norm_method,pepmin,pep_fdr,nDB)
+
 %% Defaults
 if nargin < 6
     ptms = {''};
