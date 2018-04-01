@@ -2,7 +2,7 @@
 Non-linear Bayesian elastic net regression for calculating protein and PTM fold changes from peptide intensities in label-free, bottom-up proteomics on heterogeneous primary human samples. [LINK to PREPRINT WHEN UPLOADED]
 
 # Requirements:
-Matlab (2012a or higher) with Bioinformatics and Statistics and Machine Learning toolboxes.
+Matlab (2012a or higher) with Bioinformatics and Statistics and Machine Learning toolboxes. An internet connection is required as data from UniProt and Reactome databases is pulled during analysis.
 
 N.B. All .m and .csv flies to be used in analysis must be placed in your working directory.
 
