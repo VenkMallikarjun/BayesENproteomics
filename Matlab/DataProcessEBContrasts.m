@@ -1,3 +1,31 @@
+%% Empirical Bayes contrast function for comparing different treatments.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Output -
+%       contrasted - cell array containg ProteinOutput with the specified
+%       comparison.
+%
+%%  Input - 
+%       ProteinOutput - Protein/PTM/Pathway-level output from
+%       BayesENproteomics.m 
+%       (ProteinOutput.Abds/ProteinOutput.PTMs/PathwayOutput.Abds,
+%       respectively).
+%
+%       ctrl - Scalar value. Index of group that all others are to be
+%       compared to. E.g. to compare to 2nd group listed in ProteinOutput,
+%       ctrl = 2.
+%
+%       PTM - boolean (true or false). Denotes whether comparison is being
+%       performed on a PTM output table (true) or not (false).
+%
+%       GroupNum - Scalar value. Denotes how many treatments are in the
+%       dataset in total.
+%
+%       d0s0 - Optional nx2 double matrix. Where n = GroupNum. Contains
+%       shape and scale parameters for chi^2 distrution fit to standard
+%       errors for Empirical Bayes comparison. Defaults to value provided
+%       in ProteinOutput{1,1}.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [contrasted] = DataProcessEBContrasts(ProteinOutput, ctrl, PTM, GroupNum, d0s0)
 if nargin < 5, d0s0 = ProteinOutput{1,1}; end
 
