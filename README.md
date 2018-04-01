@@ -35,4 +35,4 @@ For experiments with multiple treatments where different comparisons are necessa
 
 >> HumanProteinOutputAbds_5050ctrl = DataProcessEBContrasts(HumanProteinOutput.Abds, 2, false, 3);
 
-Details for DataProcessEBcontrasts.m can be found within the code header.
+Details for DataProcessEBcontrasts.m can be found within the code header. Protein-, PTM- and Pathway-level output .csv files can be found in the Analysis Output folder.
