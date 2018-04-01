@@ -1,5 +1,5 @@
 function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
-    norm_peps,species,groupnum,donors,ptms,norm_method,pepmin,pep_fdr)
+    norm_peps,species,groupnum,donors,ptms,norm_method,pepmin,pep_fdr,nDB)
 %% BayesENproteomics wrapper function called by user.
 %%   Output -
 %       ProteinOutput - Structure containing protein- and PTM-level
@@ -50,17 +50,39 @@ function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
 %       peptides with identification p-values above this threshold will be
 %       discarded. Defaults to 0.2.
 %
+%       nDB - Optional. Scalar number indicating number of databases used
+%       for peptide annotation. Defaults to 1.
+%
 %% Defaults
-if isempty(ptms); ptms = {''}; end
-if isempty(norm_method); norm_method = 'median'; end
-if isempty(pepmin); pepmin = 3; end
-if isempty(pep_fdr); pep_fdr = 0.2; end
+if nargin < 6
+    ptms = {''};
+    norm_method = 'median';
+    pepmin = 3;
+    pep_fdr = 0.2;
+    nDB = 1;
+elseif nargin < 7
+    norm_method = 'median';
+    pepmin = 3;
+    pep_fdr = 0.2;
+    nDB = 1;
+elseif nargin < 8
+    pepmin = 3; 
+    pep_fdr = 0.2;
+    nDB = 1;
+elseif nargin < 9
+    pep_fdr = 0.2;
+    nDB = 1;
+elseif nargin < 10
+    nDB = 1;
+end
 
 %% Load peptide lists (must be in working directory when function called)
-exp_peps2 = readtable(exp_peps,'FileType','text','Delimiter',',');
+fprintf('Importing tables...')
+exp_peps2 = readtable(exp_peps,'FileType','text','Delimiter',',','ReadVariableNames',false);
 exp_peps2 = table2cell(exp_peps2);
-norm_peps2 = readtable(norm_peps,'FileType','text','Delimiter',',');
+norm_peps2 = readtable(norm_peps,'FileType','text','Delimiter',',','ReadVariableNames',false);
 norm_peps2 = table2cell(norm_peps2);
+fprintf('Done.\n')
 
 %% Do regression fits for proteins and pathways, if necessary
 [ProteinOutput.Abds,...             %Protein-level fold changes
@@ -71,7 +93,7 @@ norm_peps2 = table2cell(norm_peps2);
     uniprotall]...
     = DataProcessProtein(norm_peps2, exp_peps2,...                          %Necessary
     norm_method,pepmin,donors,false,ptms,species,'BHFDR',...              %Optional (except species and donors)
-    'bayes','full',pep_fdr, 1, false,true);                               %Optional
+    'bayes','full',pep_fdr, nDB, false,true);                               %Optional
 
 if nargout == 2
     [PathwayOutput.Abds,...
