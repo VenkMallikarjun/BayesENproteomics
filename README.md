@@ -19,7 +19,6 @@ Called as:
 Where:
   - ProteinOutput = Structure containing protein- and PTM-level quantification.
   - PathwayOutput = Structure containing Reactome pathway-level quantiifcation.
-  
   - exp_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be       used in quantification (organised into Progenesis format).
   - norm_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be       used for normalisation (organised into Progenesis format). Can be same as exp_peps if normalisation is to be performed against         entire dataset.
   - species = string denoting species used. Currently only 'mouse' or 'human' can be entered.
