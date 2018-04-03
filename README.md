@@ -25,7 +25,7 @@ Where:
   
   - exp_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used in quantification (organised into Progenesis format).
   
-  - norm_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be       used for normalisation (organised into Progenesis format). Can be same as exp_peps if normalisation is to be performed against         entire dataset.
+  - norm_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used for normalisation (organised into Progenesis format). Can be same as exp_peps if normalisation is to be performed against entire dataset.
   
   - species = string denoting species used. Currently only 'mouse' or 'human' can be entered.
   
@@ -51,11 +51,15 @@ Human-specific peptide analysis:
 
 Where 'donors' is a row vector = [1,2,3,4,1,2,3,4,1,2,3,4] denoting which donor each MS run is from.
 
+
 Mouse-specific peptide analysis:
+
 `[MouseProteinOutput,MousePathwayOutput] = BayesENproteomics('20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
 '20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv','mouse',3,ones(1,15),{''},'MSCMEF');`
 
+
 Mouse skin technical replicate analysis:
+
 `TechRepProteinOutput = BayesENproteomics('20180319_MouseSkinPeptides_technicalreplicates_BayesENproteomics.csv',...
 '20180319_MouseSkinPeptides_technicalreplicates_BayesENproteomics.csv','mouse',3,ones(1,3));`
 
