@@ -13,7 +13,7 @@ Complete analysis of a dataset using MS1 peptide intensities from a Progenesis Q
 ### 2. DataProcessEBcontrasts.m for experiments with multiple treatments to perform different comparisions between treatments.
 
 
-### 1. BayesENproteomics.m
+## 1. BayesENproteomics.m
 Called as: 
 
 `[ProteinOutput, PathwayOutput] = BayesENproteomics(exp_peps, norm_peps, species, groupnum, donors, ptms, norm_method, mins, pep_fdr, nDB);`
@@ -23,7 +23,7 @@ Where:
   
   - PathwayOutput = Structure containing Reactome pathway-level quantiifcation.
   
-  - exp_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used in quantification (organised into Progenesis format).
+  - Exp_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used in quantification (organised into Progenesis format).
   
   - norm_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used for normalisation (organised into Progenesis format). Can be same as exp_peps if normalisation is to be performed against entire dataset.
   
@@ -43,9 +43,11 @@ Where:
   
   - nDB = Optional. Scalar number indicating number of databases used for peptide annotation. Defaults to 1.
   
+  
 For the mixed species dataset in Fig. 2 and 3 of [PREPRINT], analysis can be performed by calling BayesENproteomics.m as follows:
 
 Human-specific peptide analysis:
+
 `[HumanProteinOutput,HumanPathwayOutput] = BayesENproteomics('20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
 '20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv','human',3,donors,{''},'MSCMEF');`
 
