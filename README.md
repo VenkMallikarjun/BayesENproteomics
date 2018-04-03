@@ -101,4 +101,5 @@ For example, for the human-specific protein output produced above, to compare al
 
 `HumanProteinOutputAbds_5050ctrl = DataProcessEBContrasts(HumanProteinOutput.Abds, 2, false, 3);`
 
-Protein-, PTM- and Pathway-level output .csv files can be found in the Analysis Output folder.
+
+### Example protein-, PTM- and pathway-level output .csv files used in the creation of figures in [PREPRINT] can be found in the Analysis Output folder.
