@@ -46,29 +46,29 @@ Where:
 For the mixed species dataset in Fig. 2 and 3 of [PREPRINT], analysis can be performed by calling BayesENproteomics.m as follows:
 
 Human-specific peptide analysis:
->[HumanProteinOutput,HumanPathwayOutput] = BayesENproteomics('20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
->'20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv','human',3,donors,{''},'MSCMEF');
->
+`[HumanProteinOutput,HumanPathwayOutput] = BayesENproteomics('20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
+'20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv','human',3,donors,{''},'MSCMEF');`
+
 Where 'donors' is a row vector = [1,2,3,4,1,2,3,4,1,2,3,4] denoting which donor each MS run is from.
 
 Mouse-specific peptide analysis:
->[MouseProteinOutput,MousePathwayOutput] = BayesENproteomics('20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
->'20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv','mouse',3,ones(1,15),{''},'MSCMEF');
+`[MouseProteinOutput,MousePathwayOutput] = BayesENproteomics('20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
+'20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv','mouse',3,ones(1,15),{''},'MSCMEF');`
 
 Mouse skin technical replicate analysis:
->TechRepProteinOutput = BayesENproteomics('20180319_MouseSkinPeptides_technicalreplicates_BayesENproteomics.csv',...
->'20180319_MouseSkinPeptides_technicalreplicates_BayesENproteomics.csv','mouse',3,ones(1,3));
+`TechRepProteinOutput = BayesENproteomics('20180319_MouseSkinPeptides_technicalreplicates_BayesENproteomics.csv',...
+'20180319_MouseSkinPeptides_technicalreplicates_BayesENproteomics.csv','mouse',3,ones(1,3));`
 
 
 For the PNGase F-treated vs. ctrl samples in Fig 4 of [PREPRINT] can be performed using the peptide list in the Progenesis QI folder (20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv) by calling:
 
-> PNGaseProteinOutput = BayesENproteomics('20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv',...
->'20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv','human',2,donors);
->
+`PNGaseProteinOutput = BayesENproteomics('20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv',...
+'20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv','human',2,donors);`
+
 Where 'donors' is a row vector = [1,2,3,4,5,1,2,3,4,5] denoting which donor each MS run is from. Further options for BayesENproteomics can be found in comments within the code.
 
 For experiments with multiple treatments where different comparisons are necessary, this can be performed calling DataProcessEBcontrasts.m. For example, for the human-specific protein output produced above, to compare all groups to group 2 rather than group 1 (default):
 
-> HumanProteinOutputAbds_5050ctrl = DataProcessEBContrasts(HumanProteinOutput.Abds, 2, false, 3);
+`HumanProteinOutputAbds_5050ctrl = DataProcessEBContrasts(HumanProteinOutput.Abds, 2, false, 3);`
 
 Details for DataProcessEBcontrasts.m can be found within the code header. Protein-, PTM- and Pathway-level output .csv files can be found in the Analysis Output folder.
