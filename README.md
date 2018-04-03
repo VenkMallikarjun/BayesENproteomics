@@ -15,7 +15,7 @@ Complete analysis of a dataset using MS1 peptide intensities from a Progenesis Q
 1. BayesENproteomics.m
 Called as: 
 >[ProteinOutput, PathwayOutput] = BayesENproteomics(exp_peps, norm_peps, species, groupnum, donors, ptms, norm_method, mins, pep_fdr, >nDB);
->Where:
+>Where:\n
 >  ProteinOutput = Structure containing protein- and PTM-level quantification.
 >  PathwayOutput = Structure containing Reactome pathway-level quantiifcation.
 >  
