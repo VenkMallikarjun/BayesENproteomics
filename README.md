@@ -77,7 +77,7 @@ For the PNGase F-treated vs. ctrl samples in Fig 4 of [PREPRINT] can be performe
 Where 'donors' is a row vector = [1,2,3,4,5,1,2,3,4,5] denoting which donor each MS run is from. 
 
 
-## DataProcessEBcontrasts.m
+## 2. DataProcessEBcontrasts.m
 
 For experiments with multiple treatments where different comparisons are necessary, this can be performed calling DataProcessEBcontrasts.m as follows:
 
