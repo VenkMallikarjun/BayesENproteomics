@@ -60,16 +60,16 @@ function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
 if nargin < 6
     ptms = {''};
     norm_method = 'median';
-    pepmin = [3,5];
+    mins = [3,5];
     pep_fdr = 0.2;
     nDB = 1;
 elseif nargin < 7
     norm_method = 'median';
-    pepmin = [3,5];
+    mins = [3,5];
     pep_fdr = 0.2;
     nDB = 1;
 elseif nargin < 8
-    pepmin = [3,5]; 
+    mins = [3,5]; 
     pep_fdr = 0.2;
     nDB = 1;
 elseif nargin < 9
