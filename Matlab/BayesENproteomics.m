@@ -41,8 +41,9 @@
 %       run in exp_peps to its respective column in norm_peps. Defaults to
 %       'median'.
 %
-%       pepmin - Optional. Minimum number of peptides/proteins required for
-%       a protein/pathway to be reported. Defaults to 3.
+%       mins - Optional. 2-dimensional vector specifying minimum number of
+%       [peptides,proteins] required for a [protein,pathway] to be reported.
+%       Defaults to [3,5].
 %
 %       pep_fdr - Optional. Scalar number >0 and <=1 denotes peptide false 
 %       discovery p-value cutoff. Following Benjamini-Hochberg adjustment,
@@ -53,22 +54,22 @@
 %       for peptide annotation. Defaults to 1.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
-    norm_peps,species,groupnum,donors,ptms,norm_method,pepmin,pep_fdr,nDB)
+    norm_peps,species,groupnum,donors,ptms,norm_method,mins,pep_fdr,nDB)
 
 %% Defaults
 if nargin < 6
     ptms = {''};
     norm_method = 'median';
-    pepmin = 3;
+    pepmin = [3,5];
     pep_fdr = 0.2;
     nDB = 1;
 elseif nargin < 7
     norm_method = 'median';
-    pepmin = 3;
+    pepmin = [3,5];
     pep_fdr = 0.2;
     nDB = 1;
 elseif nargin < 8
-    pepmin = 3; 
+    pepmin = [3,5]; 
     pep_fdr = 0.2;
     nDB = 1;
 elseif nargin < 9
@@ -94,13 +95,13 @@ fprintf('Done.\n')
     ProteinOutput.stats,....
     uniprotall]...
     = DataProcessProtein(norm_peps2, exp_peps2,...                          %Necessary
-    norm_method,pepmin,donors,false,ptms,species,'BHFDR',...              %Optional (except species and donors)
+    norm_method,mins(1),donors,false,ptms,species,'BHFDR',...              %Optional (except species and donors)
     'bayes','full',pep_fdr, nDB, false,true);                               %Optional
 
 if nargout == 2
     [PathwayOutput.Abds,...
         PathwayOutput.UniProt2Reactome]...
-        = DataProcessPathways(ProteinOutput.Abds, species, pepmin,...
+        = DataProcessPathways(ProteinOutput.Abds, species, mins(2),...
         uniprotall, false, groupnum, false);
 end
 end
