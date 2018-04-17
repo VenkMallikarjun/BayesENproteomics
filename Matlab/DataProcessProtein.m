@@ -679,7 +679,7 @@ for i = 1:ProtNum
             InteractionTable(strcmp(InteractionTable(:,IDcol),UniqueProteins(i)),end) = {MSE};
             
             %Update normalised peptide intensities with imputed values
-            normedpepstonorm(strcmp(normedpepstonorm(:,IDcol), UniqueProteins(i)),RA:end) = num2cell(reshape(mdl.Yimputed,[numel(Prottbl.Feature)/GroupNum/h,numel(unique(Subject))]));
+            normedpepstonorm(strcmp(normedpepstonorm(:,IDcol), UniqueProteins(i)),RA:end) = num2cell(reshape(mdl.Yimputed,[numel(Prottbl.Feature)/width,width]));
             %pepCounter = pepCounter+NumPeps;
             ProteinAbundance(q+2,end-2) = {num_interresults};
                         
@@ -735,7 +735,7 @@ for i = 1:ProtNum
     %P(2:end+1,:) = P;
     %P(1,:) = {max(cellfun('length',ProteinAbundance(:,1)))};
     %fprintf(['%*s %3d ' ,repmat('%3.2f ',1,3*3),'%3s %3s %3s ', repmat('%3.2f ',1,3),'%3d %3d %3d\n'], P{:})
-    fprintf(['#',num2str(q),' ',ProtID,' ',num2str(NumPeps),' ',num2str(results(:)',2),'\n'])
+    fprintf(['#',num2str(q),' ',ProtID,' ',num2str(NumPepsU),' ',num2str(results(:)',2),'\n'])
     q = q + 1;
 end
 
