@@ -1,5 +1,9 @@
 # BayesENproteomics
-Non-linear Bayesian elastic net regression for calculating protein and PTM fold changes from peptide intensities in label-free, bottom-up proteomics on heterogeneous primary human samples. [LINK to PREPRINT WHEN UPLOADED]
+Non-linear Bayesian elastic net regression for calculating protein and PTM fold changes from peptide intensities in label-free, bottom-up proteomics on heterogeneous primary human samples. 
+
+If you find this method useful please cite the [preprint](https://www.biorxiv.org/content/early/2018/04/06/295527).
+
+
 
 ## Requirements:
 Matlab (2012a or higher) with Bioinformatics and Statistics and Machine Learning toolboxes. An internet connection is required as data from UniProt and Reactome databases is pulled during analysis.
@@ -46,7 +50,7 @@ Where:
 
 ### Mixed-species example
 
-For the mixed species dataset in Fig. 2 and 3 of [PREPRINT], analysis can be performed by calling BayesENproteomics.m as follows:
+For the mixed species dataset in Fig. 2 and 3 of [Mallikarjun et al. (2018)](https://www.biorxiv.org/content/early/2018/04/06/295527), analysis can be performed by calling BayesENproteomics.m as follows:
 
 Human-specific peptide analysis:
 
@@ -69,7 +73,7 @@ Mouse skin technical replicate analysis:
 
 ### PNGase F-treated example
 
-For the PNGase F-treated vs. ctrl samples in Fig 4 of [PREPRINT] can be performed using the peptide list in the Progenesis QI folder (20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv) by calling:
+For the PNGase F-treated vs. ctrl samples in Fig 4 of [Mallikarjun et al. (2018)](https://www.biorxiv.org/content/early/2018/04/06/295527) can be performed using the peptide list in the Progenesis QI folder (20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv) by calling:
 
 `PNGaseProteinOutput = BayesENproteomics('20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv',...
 '20180103_MSC_PNGaseFbenchmark_peptidelist_BayesENproteomics.csv','human',2,donors);`
@@ -102,4 +106,4 @@ For example, for the human-specific protein output produced above, to compare al
 `HumanProteinOutputAbds_5050ctrl = DataProcessEBContrasts(HumanProteinOutput.Abds, 2, false, 3);`
 
 
-### Example protein-, PTM- and pathway-level output .csv files used in the creation of figures in [PREPRINT] can be found in the Analysis Output folder.
+### Example protein-, PTM- and pathway-level output .csv files used in the creation of figures in [Mallikarjun et al. (2018)](https://www.biorxiv.org/content/early/2018/04/06/295527) can be found in the Analysis Output folder.
