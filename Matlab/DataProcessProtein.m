@@ -115,21 +115,13 @@ end
 
 if strcmp(score, 'BHFDR')
     scores = 10.^(str2double(normedpepstonorm(4:end,8))./(-10));
-    scores = [0;0;0; mafdrVM(scores,'BHFDR','true')];
+    scores = [0;0;0; mafdr(scores,'BHFDR','true')];
     normedpepstonorm = normedpepstonorm(scores < scorethreshold,:);
-    %scores = 10.^(str2double(peptidelistabds(4:end,8))./(-10));
-    %scores = [0;0;0; mafdrVM(scores,'BHFDR','true')];
-    %peptidelistabds = peptidelistabds(scores < scorethreshold,:);
-    %pl_length = size(peptidelistabds,1);
     norm_length = size(normedpepstonorm,1);
 elseif score > 0
     scored = str2double(normedpepstonorm(:,8)) > score;
     normedpepstonorm = normedpepstonorm(scored,:);
-    %scored = str2double(peptidelistabds(:,8)) > score;
-    %peptidelistabds = peptidelistabds(scored,:);
     normedpepstonorm = [pepstonorm(1:3,:); normedpepstonorm];
-    %peptidelistabds = [wholepeptidelist(1:3,:); peptidelistabds];
-    %pl_length = size(peptidelistabds,1);
     norm_length = size(normedpepstonorm,1);
 end
 name = '';
