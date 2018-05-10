@@ -63,7 +63,7 @@ Where 'donors' is a row vector = [1,2,3,4,1,2,3,4,1,2,3,4] denoting which donor 
 Mouse-specific peptide analysis:
 
 `[MouseProteinOutput,MousePathwayOutput] = BayesENproteomics...('20180319_MouseSkinuniquepeptides_MixedSpecies_BayesENproteomics.csv',...
-'20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv','mouse',3,ones(1,15),{''},'MSCMEF');`
+'20180319_HumanMSCsuniquepeptides_MixedSpecies_BayesENproteomics.csv','mouse',3,ones(1,12),{''},'MSCMEF');`
 
 
 Mouse skin technical replicate analysis:
