@@ -115,7 +115,7 @@ end
 
 if strcmp(score, 'BHFDR')
     scores = 10.^(str2double(normedpepstonorm(4:end,8))./(-10));
-    scores = [0;0;0; mafdr(scores,'BHFDR','true')];
+    scores = [0;0;0; bhfdr(scores)];
     normedpepstonorm = normedpepstonorm(scores < scorethreshold,:);
     norm_length = size(normedpepstonorm,1);
 elseif score > 0
@@ -889,8 +889,8 @@ boxplot(cell2mat(ProteinAbundance(3:end,3:2+GroupNum)), 'OutlierSize',1)
 %(doc mafdr for more info)
 for i = 3 + (GroupNum * 2):2 + (GroupNum * 3)
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
-    try temp_pvals = mafdr(cell2mat(ProteinAbundance(3:end,i)),...
-            'BHFDR', true); 
+    try temp_pvals = bhfdr(cell2mat(ProteinAbundance(3:end,i)))%,...
+            %'BHFDR', true); 
         ProteinAbundance(3:end,i + GroupNum + 3) = num2cell(temp_pvals);
     catch
         warning('mafdr() failed, probably a licensing thing.');
@@ -992,8 +992,8 @@ for i = 1:PTMnum
                 %InteractionTable(ii,end-1) = {DoF + d0s0(1) - 1}; %New degrees of freedom
             end
             ds(q+1,:,i) = d0s0;
-            try temp_pvals = mafdr(cell2mat(ModList{i,1}(3:end,10 + (GroupNum * 2) + q)),...
-                'BHFDR', true);
+            try temp_pvals = bhfdr(cell2mat(ModList{i,1}(3:end,10 + (GroupNum * 2) + q)))%,...
+                %'BHFDR', true);
                 ModList{i,1}(3:end,q + 10 + (GroupNum * 3)) = num2cell(temp_pvals);
             catch
                 warning('mafdr() failed, probably a licensing thing.');
