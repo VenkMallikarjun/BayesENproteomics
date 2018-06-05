@@ -52,7 +52,7 @@ for i = 0:1:GroupNum-1
     t = FC./SEM;     
     pvals(:,i+1) = min(1,(1 - tcdf(t, DoFs + d0s0(i+1,1) - 1)) * 2 + 1e-15); %2-sided t-test, p-values cannot be 0
     contrasted(3:end,isPTM(1) + isPTM(2) + GroupNum*2 + i) = num2cell(pvals(:,i+1));
-    contrasted(3:end,isPTM(1) + isPTM(2) + GroupNum*3 + isPTM(3) + i) = num2cell(mafdr(pvals(:,i+1), 'BHFDR',true));
+    contrasted(3:end,isPTM(1) + isPTM(2) + GroupNum*3 + isPTM(3) + i) = num2cell(bhfdr(pvals(:,i+1)));
 end
 
 
