@@ -227,8 +227,8 @@ end
 %(doc mafdr for more info)
 for i = FCbegin + (GroupNum * 2):FCbegin - 1 + (GroupNum * 3)
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
-    try temp_pvals = mafdr(cell2mat(PathwayQuant(3:end,i)),...
-            'BHFDR', true);
+    try temp_pvals = bhfdr(cell2mat(PathwayQuant(3:end,i)))%,...
+            %'BHFDR', true);
         PathwayQuant(3:end,i + GroupNum + FCbegin) = num2cell(temp_pvals);
     catch
         warning('mafdr() failed, probably a licensing thing.');
