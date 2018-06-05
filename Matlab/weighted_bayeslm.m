@@ -96,7 +96,7 @@ for i = 1:iNumIter
     L = diag(lambda_ridge) + D_tau_squared;
     A = XtX + L;
     C = sigma2.*inv(A);
-    beta_estimate = mvnrnd(A\wX'*wY,C)+1e-20;
+    beta_estimate = mvnrnd(A\wX'*wY,C);%+1e-20;
     
     %% Sample sigma_squared from inverse gamma distribution
 	sigma2_shape = (n-1+p)/2;
