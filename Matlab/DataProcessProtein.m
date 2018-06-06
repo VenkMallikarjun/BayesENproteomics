@@ -899,7 +899,7 @@ end
 
 %% Pass over to PTM calculation code to output fold changes of PTMs.
 PTMnum = 0;
-if ~strcmp(mods,''); PTMnum = size(mods,2); end
+if ~strcmp(mods(1),''); PTMnum = size(mods,2); end
 ModList = cell(PTMnum,1);
 switch regmethod
     case 'bayes'
