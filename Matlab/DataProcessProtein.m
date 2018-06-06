@@ -898,7 +898,8 @@ for i = 3 + (GroupNum * 2):2 + (GroupNum * 3)
 end
 
 %% Pass over to PTM calculation code to output fold changes of PTMs.
-PTMnum = size(mods,2);
+PTMnum = 0;
+if ~strcmp(mods,''); PTMnum = size(mods,2); end
 ModList = cell(PTMnum,1);
 switch regmethod
     case 'bayes'
