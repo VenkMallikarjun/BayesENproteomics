@@ -808,8 +808,8 @@ if EB %Do Empirical Bayes
         end
         ds(i+1,:) = d0s0;
     end
+    ProteinAbundance{1,1} = ds;
 end
-ProteinAbundance{1,1} = ds;
 
 %% Step 8: Make summary figures.
 %Make protein correlation matrix with mean peptide intensities.
@@ -1002,6 +1002,6 @@ for i = 1:PTMnum
         end
     end
 end
-ModList{end+1,1} = ds;
+if EB; ModList{end+1,1} = ds; end
 %normedpepstonorm = [wholepeptidelist(1:2,:); normedpepstonorm];
 end
