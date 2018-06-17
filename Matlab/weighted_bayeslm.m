@@ -108,7 +108,7 @@ for i = 1:iNumIter
     tau_scale = lambda_lasso.^2;
     tau_vector(1,:) =  gigrnd(-0.5, tau_shape, tau_scale);
     
-    lambda_lasso(1,:) = sqrt(gamrnd(p,sum(1./tau_vector,2)/2+1));
+    lambda_lasso(1,:) = sqrt(gamrnd(p,sum(tau_vector,2)*2+1));
     lambda_ridge(1,:) = gamrnd(1,1./(beta_estimate.^2./2./sigma2+3));
     
     D_tau_squared = diag(tau_vector);
