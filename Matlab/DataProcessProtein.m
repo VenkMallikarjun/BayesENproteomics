@@ -16,7 +16,7 @@
 function [ProteinAbundance, normedpepstonorm, InteractionTable, ModList,...
     PCA, uniprotall] = DataProcessProtein(wholepeptidelist, pepstonorm,...
     normmethod, pepmin, donorvector, ProteinGrouping, mods, organism,...
-    score, regmethod, model, scorethreshold, nDB, incSubject, EB)
+    score, regmethod, model, scorethreshold, nDB, incSubject, EB, ContGroup)
 
 %% Step 0: setup variables
 %setup progress bar
@@ -115,7 +115,7 @@ end
 
 if strcmp(score, 'BHFDR')
     scores = 10.^(str2double(normedpepstonorm(4:end,8))./(-10));
-    scores = [0;0;0; bhfdr(scores)];
+    scores = [0;0;0; mafdrVM(scores,'BHFDR','true')];
     normedpepstonorm = normedpepstonorm(scores < scorethreshold,:);
     norm_length = size(normedpepstonorm,1);
 elseif score > 0
@@ -237,13 +237,16 @@ switch normmethod
         error('normmethod not set correctly')
 end
 
-GroupList = unique(normedpepstonorm(2,RA:1:RA-1+width), 'stable');
-GroupNum = numel(GroupList);
-if numDonors > 1
-    h = numDonors;
+if ContGroup
+    %ContGroup = ContGroup - min(ContGroup);
+    %ContGroup = ContGroup./max(ContGroup);
+    GroupList = {'Continuous variable'};
+    GroupNum = 2;
 else
-    h = numel(donors)/GroupNum;
+    GroupList = unique(normedpepstonorm(2,RA:1:RA-1+width), 'stable');
+    GroupNum = numel(GroupList);
 end
+
 %% Step 4: Find unique peptides, including PTMs.
 %Re-assign peptides from unreviewed isoforms to reviewed if sequence
 %matches.
@@ -312,6 +315,7 @@ PCA.NP.missing = isnan(temp_final); %Record indices of missing values
 %by -1.6 * std. For Bayesian Linear regression, missing values are imputed
 %as part of the Gibbs sampler.
 if (~strcmp(normmethod,'none') && ~strcmp(regmethod,'bayes')) && ~strcmp(regmethod,'nnnn')
+%if (~strcmp(normmethod,'none')) && ~strcmp(regmethod,'nnnn')
     temp_final = Impute(temp_final, 'MI');
     temp_final = temp_final(~isnan(temp_final(:,1)),:);
     temp_info = temp_info(~isnan(temp_final(:,1)),:);
@@ -330,10 +334,15 @@ norm_length = size(normedpepstonorm,1);
 donors = repmat(donors, norm_length-3, 1);
 donors = donors(:);
 
-%Create vector of group names
-Group = normedpepstonorm(2,RA:1:RA-1+width);
-Group = repmat(Group, norm_length-3, 1);
-Group = Group(:);
+%Create vector of group names or continuous variable if ContGroup
+if ContGroup
+    Group = repmat(ContGroup, norm_length-3, 1);
+    Group = Group(:);
+else
+    Group = normedpepstonorm(2,RA:1:RA-1+width);
+    Group = repmat(Group, norm_length-3, 1);
+    Group = Group(:);
+end
 
 sID = repmat(RA:1:RA-1+width, norm_length-3, 1);
 sID = sID(:);
@@ -388,7 +397,12 @@ lmetable.Donor = categorical(lmetable.Donor);
 %Make arrays for preloading
 ProteinAbundance = cell(length(UniqueProteins)+2,8 + GroupNum * 4);
 %LM = cell(length(UniqueProteins),1);
-[SortedGroupList,I] = sort(GroupList);
+if ContGroup
+    SortedGroupList = {'Empty','Continuous variable'};
+    I = [1,0];
+else
+    [SortedGroupList,I] = sort(GroupList);
+end
 
 %Assign labels to tables
 ProteinAbundance{2,1} = 'IDENTIFIER USED DURING ANALYSIS';
@@ -463,11 +477,19 @@ for i = 1:ProtNum
     switch model %Determine model parameters
         case 'full'
             %design matrix = Group + Feature + Donor + Feature:Group + Feature:Donor
-            dummy = [dummyvar(categorical(Prottbl.Group)),...
-                dummyvar(categorical(Prottbl.Feature))];
-            dummy(:,GroupNum+1) = [];
-            % Make variable IDs for easy searching
-            dummyID = [repmat({'Group'},1,GroupNum), repmat({'Feature'},1,NumPeps-1)];
+            if ContGroup
+                dummy = [Prottbl.Group, dummyvar(categorical(Prottbl.Feature))];
+                dummy(:,GroupNum) = [];
+                dummyID = [{'Group'}, repmat({'Feature'},1,NumPeps-1)];
+                a = 1;
+            else
+                dummy = [dummyvar(categorical(Prottbl.Group)),...
+                    dummyvar(categorical(Prottbl.Feature))];
+                dummy(:,GroupNum+1) = [];
+                % Make variable IDs for easy searching
+                dummyID = [repmat({'Group'},1,GroupNum), repmat({'Feature'},1,NumPeps-1)];
+                a = 0;
+            end
             
             interactions = zeros(size(Prottbl,1),1);
             if numDonors > 1
@@ -477,7 +499,7 @@ for i = 1:ProtNum
                 %dummy(:,GroupNum+NumPeps+1) = 1;
                 for iii = 0:1:numDonors-2
                     interactions = [interactions,...
-                        bsxfun(@times, dummy(:,GroupNum+NumPeps+iii),...
+                        bsxfun(@times, dummy(:,GroupNum-a+NumPeps+iii),...
                         dummyvar(categorical(Prottbl.Feature)))];
                         %[ones(size(Y,1),1),dummy(:,GroupNum+1:GroupNum+NumPeps-1)])];
                         %dummy(:,GroupNum+1:GroupNum+NumPeps-1))];
@@ -486,14 +508,16 @@ for i = 1:ProtNum
                 dummyID = [dummyID, repmat({'Feature:Donor'},1,(NumPeps)*(numDonors-1))];
             end
              
-            for iii = 1:GroupNum
-                %if iii == intind; 
-                    %interactions = [interactions, [ones(size(Y,1),1),dummy(:,GroupNum+1:GroupNum+NumPeps-1)]];     
-                %else
-                if iii ~= intind
+            for iii = 1:GroupNum-a
+                if ContGroup
                     interactions = [interactions, bsxfun(@times, dummy(:,iii),...
-                        dummyvar(categorical(Prottbl.Feature)))];
+                            dummyvar(categorical(Prottbl.Feature)))];
+                else
+                    if iii ~= intind
+                        interactions = [interactions, bsxfun(@times, dummy(:,iii),...
+                            dummyvar(categorical(Prottbl.Feature)))];
                     %[ones(size(Y,1),1),dummy(:,GroupNum+1:GroupNum+NumPeps-1)])];
+                    end
                 end
             end
             interactions(:,1) = [];
@@ -534,8 +558,8 @@ for i = 1:ProtNum
     %dummyID(1,GroupNum+1) = {'Intercept'};
     %dummy(:,GroupNum+1) = 1;
     
-    dummy = [dummy,ones(size(Y,1),1)]; %Add intercept term
-    dummyID = [dummyID,{'Intercept'}];
+    %dummy = [dummy,ones(size(Y,1),1)]; %Add intercept term
+    %dummyID = [dummyID,{'Intercept'}];
     
     switch regmethod %Fit model
         case 'ME' % Mixed-effects model/similar to ridge regression
@@ -630,21 +654,22 @@ for i = 1:ProtNum
             %Model missing value types
             missing = isnan(Y);
             missing2 = 10.*sign(missing-0.5);
-            F = [dummy(:,1:GroupNum + NumPeps-1),ones(n,1)]; %Intercept denotes intrinsic missingness probability
-            missingmdl = weighted_bayeslm(F,missing2,dummyID(1,[1:GroupNum + NumPeps-1,end]),false,ones(n,1),[]);
-            MNR = (missingmdl.beta_estimate > 0 & missingmdl.beta_estimate > missingmdl.beta_estimate(end));  %Missing intensities from MNR are deemed missing non-randomly
+            F = [dummy(:,1:GroupNum + NumPeps-1)];%,ones(n,1)]; %Intercept denotes intrinsic missingness probability
+            missingmdl = weighted_bayeslm(F,missing2,dummyID(1,[1:GroupNum + NumPeps-1]),false,ones(n,1),[]);
+            MNR = (missingmdl.beta_estimate > 0 & missingmdl.beta_estimate > missingmdl.intercept);  %Missing intensities from MNR are deemed missing non-randomly
             %MNR(end) = 0;%All proteins have a non-zero chance of being missing, doesn't mean that all peptides are MNR
             Y_MNR = F(missing,MNR); 
             Y_MNR = any(Y_MNR,2);
             
             %Fit protein model
             mdl = weighted_bayeslm(dummy,Y,dummyID,true,Prottbl.Scores,Y_MNR);
-            results = mdl.beta_estimate(1,1:GroupNum)';
+            results = mdl.beta_estimate(1,1:GroupNum-a)';
+            SEMs = mdl.SEPred;
+            if ContGroup; results = [0;mdl.beta_estimate(1,1:GroupNum-a)']; end
             DF = mdl.DoF;
             MSE = mdl.residErr;
-            SEMs = mdl.SEPred;
             Ps = mdl.Pvalues;
-            intercept = mdl.beta_estimate(1,strcmp(dummyID,'Intercept'))';
+            intercept = mdl.intercept;
             %if numel(unique(Subject)) / GroupNum > 1
             
             %else
@@ -704,7 +729,11 @@ for i = 1:ProtNum
     ProteinAbundance(q+2,1) = UniqueProteins(i);
     ProteinAbundance{q+2,2} = NumPepsU;
     ProteinAbundance(q+2,3:2+GroupNum) = num2cell(results)';
-    ProteinAbundance(q+2,3 + GroupNum:2 + (GroupNum * 2)) = num2cell(SEMs(1:GroupNum));
+    if ContGroup
+        ProteinAbundance(q+2,3 + GroupNum:2 + (GroupNum * 2)) = [{NaN},num2cell(SEMs(1:GroupNum-a))];
+    else
+        ProteinAbundance(q+2,3 + GroupNum:2 + (GroupNum * 2)) = num2cell(SEMs(1:GroupNum));
+    end
     pvals = num2cell(Ps(1:GroupNum));
     pvals(find(I==1)) = {1};
     ProteinAbundance(q+2,3 + GroupNum*2:2 + (GroupNum * 3)) = pvals;
@@ -889,8 +918,8 @@ boxplot(cell2mat(ProteinAbundance(3:end,3:2+GroupNum)), 'OutlierSize',1)
 %(doc mafdr for more info)
 for i = 3 + (GroupNum * 2):2 + (GroupNum * 3)
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
-    try temp_pvals = bhfdr(cell2mat(ProteinAbundance(3:end,i)))%,...
-            %'BHFDR', true); 
+    try temp_pvals = mafdrVM(cell2mat(ProteinAbundance(3:end,i)),...
+            'BHFDR', true); 
         ProteinAbundance(3:end,i + GroupNum + 3) = num2cell(temp_pvals);
     catch
         warning('mafdr() failed, probably a licensing thing.');
@@ -899,7 +928,7 @@ end
 
 %% Pass over to PTM calculation code to output fold changes of PTMs.
 PTMnum = 0;
-if ~strcmp(mods(1),''); PTMnum = size(mods,2); end
+if ~strcmp(mods,''); PTMnum = size(mods,2); end
 ModList = cell(PTMnum,1);
 switch regmethod
     case 'bayes'
@@ -993,8 +1022,8 @@ for i = 1:PTMnum
                 %InteractionTable(ii,end-1) = {DoF + d0s0(1) - 1}; %New degrees of freedom
             end
             ds(q+1,:,i) = d0s0;
-            try temp_pvals = bhfdr(cell2mat(ModList{i,1}(3:end,10 + (GroupNum * 2) + q)))%,...
-                %'BHFDR', true);
+            try temp_pvals = mafdrVM(cell2mat(ModList{i,1}(3:end,10 + (GroupNum * 2) + q)),...
+                'BHFDR', true);
                 ModList{i,1}(3:end,q + 10 + (GroupNum * 3)) = num2cell(temp_pvals);
             catch
                 warning('mafdr() failed, probably a licensing thing.');
