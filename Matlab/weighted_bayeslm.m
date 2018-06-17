@@ -99,16 +99,16 @@ for i = 1:iNumIter
     beta_estimate = mvnrnd(A\wX'*wY,C);%+1e-20;
     
     %% Sample sigma_squared from inverse gamma distribution
-	sigma2_shape = (n-1+p)/2;
+    sigma2_shape = (n-1+p)/2;
     residuals = Y - (beta_estimate*X')';
-	sigma2_scale = (residuals'*residuals./2 + (lambda_lasso(:).*beta_estimate(:))'/D_tau_squared*beta_estimate'./2 + lambda_ridge(:)'.*beta_estimate(:)'*beta_estimate'./2);
-	sigma2 = 1./gamrnd(sigma2_shape,1./sigma2_scale+0.01);
+    sigma2_scale = (residuals'*residuals./2 + (lambda_lasso(:).*beta_estimate(:))'/D_tau_squared*beta_estimate'./2 + lambda_ridge(:)'.*beta_estimate(:)'*beta_estimate'./2);
+    sigma2 = 1./gamrnd(sigma2_shape,1./sigma2_scale+0.01);
     
     tau_shape = sqrt((lambda_lasso.^2.*sigma2)./beta_estimate.^2);
     tau_scale = lambda_lasso.^2;
     tau_vector(1,:) =  gigrnd(-0.5, tau_shape, tau_scale);
     
-    lambda_lasso(1,:) = sqrt(gamrnd(p,sum(tau_vector,2).*2+1));
+    lambda_lasso(1,:) = sqrt(gamrnd(p,sum(1./tau_vector,2)/2+1));
     lambda_ridge(1,:) = gamrnd(1,1./(beta_estimate.^2./2./sigma2+3));
     
     D_tau_squared = diag(tau_vector);
