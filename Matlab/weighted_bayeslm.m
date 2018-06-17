@@ -84,10 +84,8 @@ XXtYMR = [ones(nMR,1),X(Ymissing(~MNR),:)]*[ones(nMR,1),X(Ymissing(~MNR),:)]';
 
 %% Lambdas
 lambda_ridge = rand(1,p);
-%nu = rand(1,p);
 lambda_lasso = rand(1,p);
-%xi = rand(1,p);
-%warning('off');
+
 %% Gibbs sampler
 for i = 1:iNumIter
     %index = 1:iNumIter;
@@ -109,84 +107,25 @@ for i = 1:iNumIter
         Y(Ymissing) = wY(Ymissing)./w(Ymissing);
     end
     
-	%% beta posterior (conditional)
+    %% beta posterior (conditional)
     L = diag(lambda_ridge) + D_tau_squared;%sqrt(lambda_ridge'*lambda_ridge).*eye(p)+D_tau_squared;
     A = XtX + L;
     C = sigma2.*inv(A);
     beta_estimate = mvnrnd(A\wX'*wY,C);
-    %beta_estimate(bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:)) = mvnrnd(A(bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:),bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:))\wX(:,bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:))'*wY,C(bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:),bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:)));%sampler(wX./sigma, A./sigma2, wY./sigma, C)';
-    %if nFG > 0 || nFD > 0
-     %   beta_estimate(bind(5,:)|bind(6,:)) = mvnrnd(A(bind(5,:)|bind(6,:),bind(5,:)|bind(6,:))\wX(:,bind(5,:)|bind(6,:))'*wY,C(bind(5,:)|bind(6,:),bind(5,:)|bind(6,:)));
-    %end
+    
     %% Sample sigma_squared from inverse gamma distribution
-	sigma2_shape = (n-1+p)/2;%(n-1+p)/2 + 250/(1+nF)^2; %Play with this prior
+    sigma2_shape = (n-1+p)/2;%(n-1+p)/2 + 250/(1+nF)^2; %Play with this prior
     residuals = Y - (beta_estimate*X')';
-	sigma2_scale = (residuals'*residuals./2 + (lambda_lasso(:).*beta_estimate(:))'/D_tau_squared*beta_estimate'./2 + lambda_ridge(:)'.*beta_estimate(:)'*beta_estimate'./2);
-	sigma2 = 1./gamrnd(sigma2_shape,1./sigma2_scale+0.01);
+    sigma2_scale = (residuals'*residuals./2 + (lambda_lasso(:).*beta_estimate(:))'/D_tau_squared*beta_estimate'./2 + lambda_ridge(:)'.*beta_estimate(:)'*beta_estimate'./2);
+    sigma2 = 1./gamrnd(sigma2_shape,1./sigma2_scale+0.01);
     
     %% Sample 1/tau^2 from GIG distribution
-    %for iii = 1:7
-     %   norm_betaG(1,bind(iii,:)) = norm(beta_estimate(1,bind(iii,:)));
-      %  tt = lambda_lasso(1,bind(iii,:));
-       % if ~isempty(tt); norm_betaG(2,bind(iii,:)) = tt; end
-    %end
-    %tau_shape = sqrt((lambda_lasso.^2.*sigma2)./beta_estimate.^2);%sqrt((norm_betaG(2,norm_betaG(1,:)~=0).^2.*sigma2)./norm_betaG(1,norm_betaG(1,:)~=0).^2);
-    %tau_shape(isinf(tau_shape)) = 1e10;
-    %tau_scale = lambda_lasso.^2;%norm_betaG(2,norm_betaG(1,:)~=0).^2;
-    %tau_vector(1,:) =  gigrnd(-0.5, tau_shape, tau_scale);
     tau_vector(1,:) = 1+gigrnd(0.5, lambda_lasso(:)./(4.*lambda_ridge(:).*sigma2), (lambda_ridge(:).*beta_estimate(:).^2)./sigma2);
-    %t = zeros(1,p);
-    %t(1,norm_betaG(1,:)~=0) = gigrnd(-0.5, tau_shape, tau_scale);      
-    %for iii = 1:7
-     %   tau_vector(1,bind(iii,:)) = t(1,bind(iii,:));
-        
-        %% Sample grouped lambda_ridge from gamma distributions
-        %lambda_ridge(1,bind(iii,:)) = gamrnd(1, nALL(iii)/2/sigma2.*beta_estimate(1,bind(iii,:)).^2);
-    %end
+    D_tau_squared = diag(tau_vector);
     
     %% Sample lambdas from gamma distributions
-    %lambda_lasso(1,:) = sqrt(gamrnd(1+nG+nF+nD+nS, sum(1./tau_vector(1,bind(1,:)|bind(2,:)|bind(3,:)|bind(4,:)|bind(7,:)),2)+0.5));
-    %lambda_lasso(1,:) = sqrt(gamrnd(p, sum(1./tau_vector,2)/2+0.5));
-    %lambda_lasso(1,:) = sqrt(1./exprnd(1+tau_vector));
     lambda_lasso(1,:) = sqrt(gamrnd(p,sum(1./tau_vector,2)/2+1));
-    %lambda_lasso(1,bind(1,:)) = 1e-3;
-    %lambda_ridge(1,:) = gamrnd(p/2, 1/2/sigma2.*sum(beta_estimate.^2,2)+0.5);
-    %lambda_ridge(1,:) = gamrnd((1+nF+nG+nD+nS)/2, 1/2/sigma2.*sum(beta_estimate.^2,2)+2);
     lambda_ridge(1,:) = gamrnd(1,1./(beta_estimate.^2./2./sigma2+3));
-    %nu = 1 ./ exprnd(1+1./lambda_ridge);
-    %lambda_lasso(1,bind(1,:)) = 1e-3;
-    %xi = 1./ exprnd(1+1./lambda_lasso);
-    %if nFG > 0 || nFD > 0
-        %lambda_lasso(1,bind(5,:)|bind(6,:)) = sqrt(gamrnd(p, sum(tau_vector,2)/2+1));
-     %   lambda_ridge(1,bind(5,:)|bind(6,:)) = gamrnd(p/2, 1/sum(beta_estimate.^2,2)/2/sigma2+1);
-      %  lambda_ridge(1,bind(6,:)) = gamrnd(p, 1/sigma2.*sum(beta_estimate.^2,2)+1);
-    %end
-    %lambda_ridge(bind(1,:)) = gamrnd(1+nD*100, 1/2/sigma2.*sum(beta_estimate.^2,2));
-    %lambda_ridge(bind(2,:)|bind(3,:)|bind(4,:)) = gamrnd((nD+1)/2, 1/2/sigma2.*sum(beta_estimate.^2,2));
-    %lambda_ridge(bind(6,:)) = gamrnd(p/2, 1/2/sigma2.*sum(beta_estimate.^2,2) + 1/2/sigma2.*sum(beta_estimate(bind(1,:)|bind(6,:)).^2,2) + 1/2/sigma2.*sum(sum(beta_estimate(bind(1,:)|bind(3,:))'.^2*beta_estimate(bind(1,:)|bind(4,:)).^2,2),1));
-    %lambda_ridge(bind(5,:)) = gamrnd(p/2, 1/2/sigma2.*sum(beta_estimate.^2,2));
-%{
-    %% Weak heridity implemented via tau and lambda_ridge for interaction coefficients
-    if nFG > 0
-        %tau_vector(1,bind(5,:)) = t(5);
-        tt = 1./repmat(tau_vector(bind(2,:))',1,nF+1)./2 + 1./repmat(tau_vector(bind(1,:)|bind(3,:)),nG,1)./2;
-        tt(iCtrl,:) = [];
-        tau_vector(bind(5,:)) = tau_vector(bind(5,:)) .* 1./tt(:)';
-        
-        tt = repmat(lambda_ridge(bind(2,:))',1,nF+1)./2 + repmat(lambda_ridge(bind(1,:)|bind(3,:)),nG,1)./2;
-        tt(iCtrl,:) = [];
-        lambda_ridge(bind(5,:)) = lambda_ridge(bind(5,:)) .* tt(:)';
-    end
-    if nFD > 0
-        %tau_vector(1,bind(6,:)) = t(6);
-        tt = 1./repmat(tau_vector(bind(4,:))',1,nF+1)./2 + 1./repmat(tau_vector(bind(1,:)|bind(3,:)),nD,1)./2;
-        tau_vector(bind(6,:)) = tau_vector(bind(6,:)) .* 1./tt(:)';
-        
-        tt = repmat(lambda_ridge(bind(4,:))',1,nF+1)./2 + repmat(lambda_ridge(bind(1,:)|bind(3,:)),nD,1)./2;
-        lambda_ridge(bind(6,:)) = lambda_ridge(bind(6,:)) .* tt(:)';
-    end
-%}
-    D_tau_squared = diag(tau_vector);
         
     if i > iBurn
         beta_posterior(ii,:) = beta_estimate;
@@ -196,24 +135,12 @@ for i = 1:iNumIter
     end
     if do_weights
         %% Add weights to outlier observations based on Mascot Scores
-        %lambda_i = 1.5+gamrnd(p,(2/sigma2)^2+0.001); %1.5+gamrnd(0.5+nF/20,2000/nF/sigma2+0.1);
-        %ScoresL = Scores.*lambda_i^2;
-        %limit = 1.345;%1/(lambda_i./(1/2+exp(lambda_i^2/nF)) + 0.5);
-        %rTest = abs(residuals) > limit;%Decrease this??
-        %w = ones(n,1);
-        %w(rTest) = ScoresL(rTest);
-        %S = wX*C*wX'*oo/n*p/3;
-        %for iii = 1:n; r(iii) = 1/(1+residuals(iii)^2/2/sigma2 + S(iii,iii)/2/sigma2); end
         r = 1./(0.5+residuals.^2./2./sigma2);%+S./2./sigma2);% + sum(S,2)./2./sigma2);
         s = binornd(1,Scores);
-        %r = Scores./(residuals.^2+S(In))./2./sigma2;
-        %w = 1+gamrnd(2.*Scores, 1+r);
         w = 1+s+gamrnd(s+0.5,r);
-        %w = 3.*Scores+3.*Scores./ max(1, abs(r));%(1+gamrnd(Scores+Scores.*abs(residuals./nanstd(residuals,0,1)),1/2/sigma2+0.01)).^2;
         wY = w.*Y;
         wX(:,~bind(1,:)) = bsxfun(@times,X(:,~bind(1,:)),w);
         XtX = wX'*wX;
-        %Cov = 1./diag(XtX)';
     end
 end
 
@@ -226,7 +153,6 @@ beta_posterior(:,~bind(1,:)) = bsxfun(@minus,beta_posterior(:,~bind(1,:)),minX);
 beta_posterior(:,~bind(1,:)) = bsxfun(@rdivide,beta_posterior(:,~bind(1,:)),maxX);
 SEMs = nanstd(beta_posterior,0,1);
 beta_estimate = nanmean(beta_posterior,1);
-%intercept = beta_estimate(bind(1,:));
 yfit = (beta_estimate*X')';
 intercept = mean(Y) - mean(yfit);
 MSE = nanmean(sigma_squared);
@@ -243,5 +169,4 @@ mdl.tscores = abs(beta_estimate)./SEMs;
 mdl.DoF = numel(beta_estimate(beta_estimate ~= 0));
 mdl.Pvalues = (1 - tcdf(mdl.tscores', mdl.DoF - 1))' .* 2; %2-sided t-test
 mdl.FeatureType = featureIDs;
-%warning('on');
 end
