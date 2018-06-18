@@ -43,6 +43,7 @@ t = NaN(size(lambda));
 t((x >= 0.5) & (x <= 2)) = 1;
 t(x > 2) = sqrt(2 ./ (alpha(x > 2) + lambda(x > 2)));
 t(x < 0.5) = log(4./(alpha(x < 0.5) + 2.*lambda(x < 0.5)));
+t = t(:);
 %{
 if((x >= 0.5) && (x <= 2))
     t = 1;
@@ -54,7 +55,7 @@ end
 %}
 %% Find s
 x = -psi(-1, alpha, lambda);
-s = NaN(size(lambda,2));
+s = NaN(size(lambda));
 s((x >= 0.5) & (x <= 2)) = 1;
 s(x > 2) = sqrt(4./(alpha(x > 2).*cosh(1) + lambda(x > 2)));
 s(x < 0.5) = min(1./lambda(x < 0.5), log(1 + 1./alpha(x < 0.5) + sqrt(1./alpha(x < 0.5).^2+2./alpha(x < 0.5))));
@@ -118,11 +119,11 @@ X = X ./ sqrt(a./b);
 end
 
 function f = psi(x, alpha, lambda)
-    f = -alpha.*(cosh(x(:)) - 1) - lambda.*(exp(x(:)) - x(:) - 1);
+    f = -alpha(:).*(cosh(x(:)) - 1) - lambda(:).*(exp(x(:)) - x(:) - 1);
 end
 
 function f = dpsi(x, alpha, lambda)
-    f = -alpha.*sinh(x(:)) - lambda.*(exp(x(:)) - 1);
+    f = -alpha(:).*sinh(x(:)) - lambda(:).*(exp(x(:)) - 1);
 end
 
 function f = g(x, sd, td, f1, f2)
