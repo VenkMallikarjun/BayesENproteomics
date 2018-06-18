@@ -558,8 +558,8 @@ for i = 1:ProtNum
     %dummyID(1,GroupNum+1) = {'Intercept'};
     %dummy(:,GroupNum+1) = 1;
     
-    %dummy = [dummy,ones(size(Y,1),1)]; %Add intercept term
-    %dummyID = [dummyID,{'Intercept'}];
+    dummy = [dummy,ones(size(Y,1),1)]; %Add intercept term
+    dummyID = [dummyID,{'Intercept'}];
     
     switch regmethod %Fit model
         case 'ME' % Mixed-effects model/similar to ridge regression
@@ -654,8 +654,8 @@ for i = 1:ProtNum
             %Model missing value types
             missing = isnan(Y);
             missing2 = 10.*sign(missing-0.5);
-            F = [dummy(:,1:GroupNum + NumPeps-1)];%,ones(n,1)]; %Intercept denotes intrinsic missingness probability
-            missingmdl = weighted_bayeslm(F,missing2,dummyID(1,[1:GroupNum + NumPeps-1]),false,ones(n,1),[]);
+            F = [dummy(:,1:GroupNum + NumPeps-1),ones(n,1)]; %Intercept denotes intrinsic missingness probability
+            missingmdl = weighted_bayeslm(F,missing2,dummyID(1,[1:GroupNum + NumPeps-1,end]),false,ones(n,1),[]);
             MNR = (missingmdl.beta_estimate > 0 & missingmdl.beta_estimate > missingmdl.intercept);  %Missing intensities from MNR are deemed missing non-randomly
             %MNR(end) = 0;%All proteins have a non-zero chance of being missing, doesn't mean that all peptides are MNR
             Y_MNR = F(missing,MNR); 
