@@ -81,7 +81,7 @@ prop_MNR = nMNR/n;
 if nMissing; alpha = prctile(Y,prop_MNR*100); end
 impY = NaN(size(Ymissing,1),iNumIter-iBurn);
 ii = 1;
-XXtYMR = [ones(nMR,1),X(Ymissing(~MNR),:)]*[ones(nMR,1),X(Ymissing(~MNR),:)]';
+XXtYMR = X(Ymissing(~MNR),:)*X(Ymissing(~MNR),:)';
 
 %% Lambdas
 lambda_ridge = rand(1,p);
@@ -89,9 +89,6 @@ lambda_lasso = rand(1,p);
 
 %% Gibbs sampler
 for i = 1:iNumIter
-    %index = 1:iNumIter;
-    %sigma = sqrt(sigma2);
-    %b0 = nanmean(Y) - mean(beta_estimate*X');
     if nMissing
         if nMNR
             %Impute MNR missing values from truncated gaussian
