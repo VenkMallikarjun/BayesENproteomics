@@ -120,7 +120,7 @@ for i = 1:iNumIter
     sigma2 = 1./gamrnd(sigma2_shape,1./sigma2_scale+0.01);
     
     %% Sample 1/tau^2 from GIG distribution
-    tau_vector(1,:) = 1+gigrnd(0.5, lambda_lasso(:)./(4.*lambda_ridge(:).*sigma2), (lambda_ridge(:).*beta_estimate(:).^2)./sigma2);
+    tau_vector(1,:) = 1./(1+gigrnd(0.5, lambda_lasso(:)./(4.*lambda_ridge(:).*sigma2), (lambda_ridge(:).*beta_estimate(:).^2)./sigma2)).^2;
     D_tau_squared = diag(tau_vector);
     
     %% Sample lambdas from gamma distributions
