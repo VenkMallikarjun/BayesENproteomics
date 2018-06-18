@@ -154,7 +154,7 @@ beta_posterior(:,~bind(1,:)) = bsxfun(@rdivide,beta_posterior(:,~bind(1,:)),maxX
 SEMs = nanstd(beta_posterior,0,1);
 beta_estimate = nanmean(beta_posterior,1);
 yfit = (beta_estimate*X')';
-intercept = mean(Y) - mean(yfit);
+intercept = beta_estimate(bind(1,:));
 MSE = nanmean(sigma_squared);
 
 %% return model
