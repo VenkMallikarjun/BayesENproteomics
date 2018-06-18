@@ -68,7 +68,8 @@ w = ones(n,1);
 beta_posterior = NaN(iNumIter-iBurn,p);
 beta_estimate = randn(1,p);%(pXtX*(wX(~isnan(wY),:)'*wY(~isnan(wY))))'; %OLS fit
 sigma_squared = NaN(iNumIter-iBurn, 1);
-sigma2 = 1./gamrnd((n-1+p)/2,0.01);%nanmean((wY - wX*beta_estimate').^2,1)+1e-6; %OLS sigma_squared
+sigma2_shape = (n-1+p)/2;
+sigma2 = 1./gamrnd(sigma2_shape,0.01);%nanmean((wY - wX*beta_estimate').^2,1)+1e-6; %OLS sigma_squared
 
 %Imputation variables
 impmin = nanmin(Y)-2;
@@ -114,17 +115,19 @@ for i = 1:iNumIter
     beta_estimate = mvnrnd(A\wX'*wY,C);
     
     %% Sample sigma_squared from inverse gamma distribution
-    sigma2_shape = (n-1+p)/2;%(n-1+p)/2 + 250/(1+nF)^2; %Play with this prior
     residuals = Y - (beta_estimate*X')';
     sigma2_scale = (residuals'*residuals./2 + (lambda_lasso(:).*beta_estimate(:))'/D_tau_squared*beta_estimate'./2 + lambda_ridge(:)'.*beta_estimate(:)'*beta_estimate'./2);
     sigma2 = 1./gamrnd(sigma2_shape,1./sigma2_scale+0.01);
     
     %% Sample 1/tau^2 from GIG distribution
-    tau_vector(1,:) = 1./(1+gigrnd(0.5, lambda_lasso(:)./(4.*lambda_ridge(:).*sigma2), (lambda_ridge(:).*beta_estimate(:).^2)./sigma2)).^2;
+    tau_shape = sqrt((lambda_lasso.^2.*sigma2)./beta_estimate.^2);
+    tau_scale = lambda_lasso.^2;
+    tau_vector(1,:) =  gigrnd(-0.5, tau_shape, tau_scale);
+    %tau_vector(1,:) = 1./(1+gigrnd(0.5, lambda_lasso(:)./(4.*lambda_ridge(:).*sigma2), (lambda_ridge(:).*beta_estimate(:).^2)./sigma2)).^2;
     D_tau_squared = diag(tau_vector);
     
     %% Sample lambdas from gamma distributions
-    lambda_lasso(1,:) = sqrt(gamrnd(p,sum(1./tau_vector,2)/2+1));
+    lambda_lasso(1,:) = sqrt(gamrnd(p,sum(tau_vector,2)*2+1));
     lambda_ridge(1,:) = gamrnd(1,1./(beta_estimate.^2./2./sigma2+3));
         
     if i > iBurn
