@@ -116,17 +116,21 @@ for i = 3:x1+2
     
     %Create long vector table
     switch isPTMfile
-        case true;
+        case true
             proteins = repmat(ProtList(:,1),GroupNum,1);
             sites = repmat(ProtList(:,3),GroupNum,1);
             for iii = 1:size(ProtList,1)
                 proteins(iii) = {[char(proteins{iii}),num2str(sites{iii})]};
             end
-        otherwise;
+            nsites = numel(unique(proteins));
+            nprot = size(ProtList,1);
+        otherwise
             proteins = repmat(ProtList(:,1),GroupNum,1);
+            nprot = size(ProtList,1);
+            nsites = nprot;
     end
-    nprot = size(ProtList,1);
-    if nprot < limit, continue; end
+
+    if nsites < limit, continue; end
     
     abundances = cell2mat(ProtList(:,FCbegin:FCend));
     %abundances = bsxfun(@rdivide,abundances,max(abs(abundances),[],2));
@@ -142,7 +146,7 @@ for i = 3:x1+2
     
     %Create design matrix and response variable
     X = [dummyvar(lmetable.Groups), dummyvar(lmetable.Proteins), ones(size(abundances,1),1)];
-    Xids = [repmat({'Group'},1,GroupNum),repmat({'Feature'},1,nprot),{'Intercept'}];
+    Xids = [repmat({'Group'},1,GroupNum),repmat({'Feature'},1,nsites),{'Intercept'}];
     
     %weight abundances by SEs
     Y = lmetable.Abundances;
@@ -162,7 +166,7 @@ for i = 3:x1+2
     PathwayQuant(ii,FCbegin:FCend) = num2cell(results);
     PathwayQuant(ii,SEbegin:SEend) = num2cell(SE);
     PathwayQuant(ii,SEend + 1:SEend + GroupNum) = num2cell(P);
-    PathwayQuant(ii,end) = num2cell(nprot);
+    PathwayQuant(ii,end) = num2cell(nsites);
     PathwayQuant(ii,end-1) = num2cell(mdl.DoF);
     PathwayQuant(ii,end-2) = {unique(lmetable.Proteins)};
     PathwayQuant(ii,1) = UniProt2Reactome2(i-2,2);
@@ -229,8 +233,7 @@ end
 %(doc mafdr for more info)
 for i = FCbegin + (GroupNum * 2)+ptm2:FCbegin - 1 + (GroupNum * 3)+ptm2
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
-    try temp_pvals = bhfdr(cell2mat(PathwayQuant(3:end,i)));%,...
-           % 'BHFDR', true); %Call to modified function to avoid licence check
+    try temp_pvals = bhfdr(cell2mat(PathwayQuant(3:end,i)));
            if isPTMfile
                PathwayQuant(3:end,i + GroupNum) = num2cell(temp_pvals);
            else
