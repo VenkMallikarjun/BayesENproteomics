@@ -36,10 +36,12 @@ if isPTMfile
     uniprotidcol = strcmp(ProteinOutput(1,:),'UNIPROT ID');
     FCbegin = 6;
     ptm = 3;
+    ptm2 = 4;
 else
     uniprotidcol = strcmp(ProteinOutput(2,:),'UNIPROT ID');
     FCbegin = 3;
     ptm = 0;
+    ptm2 = 0;
 end
 uniprotidcol = find(uniprotidcol);
 UniProt2Reactome = UniProt2Reactome(strcmp(UniProt2Reactome(:,6),species),:);
@@ -225,11 +227,15 @@ end
 
 %% Final step: Adjust p-values according to Benjamini & Hochberg  1995
 %(doc mafdr for more info)
-for i = FCbegin + (GroupNum * 2):FCbegin - 1 + (GroupNum * 3)
+for i = FCbegin + (GroupNum * 2)+ptm2:FCbegin - 1 + (GroupNum * 3)+ptm2
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
     try temp_pvals = bhfdr(cell2mat(PathwayQuant(3:end,i)));%,...
            % 'BHFDR', true); %Call to modified function to avoid licence check
-        PathwayQuant(3:end,i + GroupNum + FCbegin) = num2cell(temp_pvals);
+           if isPTMfile
+               PathwayQuant(3:end,i + GroupNum) = num2cell(temp_pvals);
+           else
+               PathwayQuant(3:end,i + GroupNum + FCbegin) = num2cell(temp_pvals);
+           end
     catch
         warning('mafdr() failed, probably a licensing thing.');
     end
@@ -238,6 +244,6 @@ if isPTMfile
     PathwayQuant(1,11+GroupNum) = {'SE'};
     PathwayQuant(1,11+GroupNum*2) = {'p-values'};
     PathwayQuant(1,11+GroupNum*3) = {'BH-FDR'};
-    PathwayQuant = PathwayQuant(:,[1:2,6:6+GroupNum-1,6+GroupNum+5:end]);
+    PathwayQuant = PathwayQuant(:,[1:2,6:6+GroupNum-1,6+GroupNum+4:end]);
 end
 end
