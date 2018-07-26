@@ -91,9 +91,9 @@ ProteinsInPathway2 = ProteinsInPathway2(:,totalPinP' >= limit);
 
 GroupNum = numel(unique(ProteinOutput(2,3:uniprotidcol-1)))-ptm;
 SEbegin = FCbegin + GroupNum;
-if isPTMfile, SEbegin = SEbegin + 5; end
+if isPTMfile, SEbegin = SEbegin + 4; end
 FCend = SEbegin - 1;
-if isPTMfile, FCend = FCend -5; end
+if isPTMfile, FCend = FCend -4; end
 SEend = SEbegin + GroupNum - 1;
 groups = unique(ProteinOutput(2,FCbegin:FCend),'stable');
 
@@ -117,8 +117,8 @@ for i = 3:x1+2
         case true;
             proteins = repmat(ProtList(:,1),GroupNum,1);
             sites = repmat(ProtList(:,3),GroupNum,1);
-            for ii = 1:size(ProtList,1)
-                proteins(ii) = {[char(proteins{ii}),num2str(sites{ii})]};
+            for iii = 1:size(ProtList,1)
+                proteins(iii) = {[char(proteins{iii}),num2str(sites{iii})]};
             end
         otherwise;
             proteins = repmat(ProtList(:,1),GroupNum,1);
@@ -227,8 +227,8 @@ end
 %(doc mafdr for more info)
 for i = FCbegin + (GroupNum * 2):FCbegin - 1 + (GroupNum * 3)
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
-    try temp_pvals = bhfdr(cell2mat(PathwayQuant(3:end,i)))%,...
-            %'BHFDR', true);
+    try temp_pvals = bhfdr(cell2mat(PathwayQuant(3:end,i)));%,...
+           % 'BHFDR', true); %Call to modified function to avoid licence check
         PathwayQuant(3:end,i + GroupNum + FCbegin) = num2cell(temp_pvals);
     catch
         warning('mafdr() failed, probably a licensing thing.');
