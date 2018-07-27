@@ -124,13 +124,15 @@ for i = 3:x1+2
             end
             nsites = numel(unique(proteins));
             nprot = size(ProtList,1);
+            nprot2 = numel(unique(ProtList(:,1)));
         otherwise
             proteins = repmat(ProtList(:,1),GroupNum,1);
             nprot = size(ProtList,1);
             nsites = nprot;
+            nprot2 = nprot;
     end
 
-    if nsites < limit, continue; end
+    if nsites < limit || nprot2 < limit, continue; end
     
     abundances = cell2mat(ProtList(:,FCbegin:FCend));
     %abundances = bsxfun(@rdivide,abundances,max(abs(abundances),[],2));
