@@ -119,7 +119,7 @@ for i = 3:x1+2
         case true
             proteins = repmat(ProtList(:,1),GroupNum,1);
             sites = repmat(ProtList(:,3),GroupNum,1);
-            for iii = 1:size(ProtList,1)
+            for iii = 1:size(proteins,1)
                 proteins(iii) = {[char(proteins{iii}),num2str(sites{iii})]};
             end
             nsites = numel(unique(proteins));
