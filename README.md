@@ -6,7 +6,7 @@ If you find this method useful please cite the [preprint](https://www.biorxiv.or
 
 
 ## Requirements:
-Matlab (2012a or higher) with the Statistics and Machine Learning toolbox. An internet connection is required as data from UniProt and Reactome databases is pulled during analysis.
+Matlab (2012a or higher) with the Statistics and Machine Learning toolbox. An internet connection is required as data from UniProt and Reactome databases are pulled during analysis.
 
 N.B. All .m and .csv flies to be used in analysis must be placed in your working directory.
 
