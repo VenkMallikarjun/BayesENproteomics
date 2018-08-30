@@ -34,7 +34,8 @@ switch organism
         url = 'http://www.uniprot.org/uniprot/?sort=&desc=&compress=no&query=proteome:UP000000589&fil=&force=no&preview=true&format=tab&columns=id,entry%20name,protein%20names,genes,go,go(biological%20process),go(molecular%20function),go(cellular%20component),go-id,interactor,sequence,database(GeneID),database(MGI),reviewed';
         upcol = 13;
     otherwise
-        error('organism name can only be human or mouse')
+        url = ['http://www.uniprot.org/uniprot/?sort=&desc=&compress=no&query=proteome:',organism,'&fil=&force=no&preview=true&format=tab&columns=id,entry%20name,protein%20names,genes,go,go(biological%20process),go(molecular%20function),go(cellular%20component),go-id,interactor,sequence,database(GeneID),reviewed'];
+        upcol = 12;
 end
 filename = 'uniprotall.tab';
 try outfilename = websave(filename,url);
@@ -115,7 +116,7 @@ end
 
 if strcmp(score, 'BHFDR')
     scores = 10.^(str2double(normedpepstonorm(4:end,8))./(-10));
-    scores = [0;0;0; mafdrVM(scores,'BHFDR','true')];
+    scores = [0;0;0; bhfdr(scores)];
     normedpepstonorm = normedpepstonorm(scores < scorethreshold,:);
     norm_length = size(normedpepstonorm,1);
 elseif score > 0
@@ -918,8 +919,8 @@ boxplot(cell2mat(ProteinAbundance(3:end,3:2+GroupNum)), 'OutlierSize',1)
 %(doc mafdr for more info)
 for i = 3 + (GroupNum * 2):2 + (GroupNum * 3)
     %if i ~= 2 + (GroupNum * 2) + find(I == 1)
-    try temp_pvals = mafdrVM(cell2mat(ProteinAbundance(3:end,i)),...
-            'BHFDR', true); 
+    try temp_pvals = bhfdr(cell2mat(ProteinAbundance(3:end,i)));%,...
+            %'BHFDR', true); 
         ProteinAbundance(3:end,i + GroupNum + 3) = num2cell(temp_pvals);
     catch
         warning('mafdr() failed, probably a licensing thing.');
@@ -1022,8 +1023,8 @@ for i = 1:PTMnum
                 %InteractionTable(ii,end-1) = {DoF + d0s0(1) - 1}; %New degrees of freedom
             end
             ds(q+1,:,i) = d0s0;
-            try temp_pvals = mafdrVM(cell2mat(ModList{i,1}(3:end,10 + (GroupNum * 2) + q)),...
-                'BHFDR', true);
+            try temp_pvals = bhfdr(cell2mat(ModList{i,1}(3:end,10 + (GroupNum * 2) + q)));%,...
+                %'BHFDR', true);
                 ModList{i,1}(3:end,q + 10 + (GroupNum * 3)) = num2cell(temp_pvals);
             catch
                 warning('mafdr() failed, probably a licensing thing.');

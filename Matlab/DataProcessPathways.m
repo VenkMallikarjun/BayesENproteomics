@@ -30,6 +30,15 @@ switch species
         if grouping; genecol = 13;
         else genecol = 2;
         end
+    otherwise
+        url = ['https://www.uniprot.org/proteomes/',species];
+        w = urlread(url);
+        [a,b] = regexp(w,'<title>(\w+ \w+) (');
+        species = w(a:b);
+        species = species(8:end-2);
+        if grouping; genecol = 12;
+        else genecol = 2;
+        end
 end
 
 if isPTMfile
