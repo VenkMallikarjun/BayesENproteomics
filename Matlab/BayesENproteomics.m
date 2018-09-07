@@ -107,7 +107,7 @@ fprintf('Done.\n')
     uniprotall]...
     = DataProcessProtein(norm_peps2, exp_peps2,...                          %Necessary
     norm_method,mins(1),donors,false,ptms,species,'BHFDR',...              %Optional (except species and donors)
-    'bayes','full',pep_fdr, nDB, false,true);                               %Optional
+    'bayes','full',pep_fdr, nDB, false,true,[]);                               %Optional
 
 if nargout == 2
     [PathwayOutput.Abds,...
