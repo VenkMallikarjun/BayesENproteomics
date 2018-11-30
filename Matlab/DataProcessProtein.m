@@ -317,7 +317,7 @@ PCA.NP.missing = isnan(temp_final); %Record indices of missing values
 %as part of the Gibbs sampler.
 if (~strcmp(normmethod,'none') && ~strcmp(regmethod,'bayes')) && ~strcmp(regmethod,'nnnn')
 %if (~strcmp(normmethod,'none')) && ~strcmp(regmethod,'nnnn')
-    temp_final = Impute(temp_final, 'MI');
+    temp_final = Impute(temp_final, 'dgd');
     temp_final = temp_final(~isnan(temp_final(:,1)),:);
     temp_info = temp_info(~isnan(temp_final(:,1)),:);
 end
