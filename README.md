@@ -47,7 +47,7 @@ Where:
   
   * nDB = Optional. Scalar number indicating number of databases used for peptide annotation. Defaults to 1.
   
-  * impute_method = Optional. String denoting imputation methods to be used. Options are: 'bpca' - Bayesian PCA decomposition of matrix and reassembly of missing values; 'knn' - mean of 11 nearest neighbours determined by euclidian distance; 'dgd' - random imputation from a downshifted Gaussian distribution; and 'ami' - adaptive multiple imputation as detailed in the preprint.
+  * impute_method = Optional. String denoting imputation methods to be used. Options are: 'bpca' - Bayesian PCA decomposition of matrix and reassembly of missing values; 'knn' - mean of 11 nearest neighbours determined by euclidian distance; 'dgd' - random imputation from a downshifted Gaussian distribution; and 'ami' - adaptive multiple imputation as detailed in the preprint. Defaults to 'ami'.
 
 
 ### Mixed-species example
