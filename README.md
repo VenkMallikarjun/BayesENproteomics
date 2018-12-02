@@ -20,7 +20,7 @@ Complete analysis of a dataset using MS1 peptide intensities from a Progenesis Q
 ## 1. BayesENproteomics.m
 Called as: 
 
-`[ProteinOutput, PathwayOutput] = BayesENproteomics(exp_peps, norm_peps, species, groupnum, donors, ptms, norm_method, mins, pep_fdr, nDB);`
+`[ProteinOutput, PathwayOutput] = BayesENproteomics(exp_peps, norm_peps, species, groupnum, donors, ptms, norm_method, mins, pep_fdr, nDB, impute_method);`
 
 Where:
   - ProteinOutput = Structure containing protein- and PTM-level quantification.
@@ -46,6 +46,8 @@ Where:
   * pep_fdr = Optional. Scalar number >0 and <=1 denotes peptide false discovery p-value cutoff. Following Benjamini-Hochberg adjustment, peptides with identification p-values above this threshold will be discarded. Defaults to 0.2.
   
   * nDB = Optional. Scalar number indicating number of databases used for peptide annotation. Defaults to 1.
+  
+  * impute_method = Optional. String denoting imputation methods to be used. Options are: 'bpca' - Bayesian PCA decomposition of matrix and reassembly of missing values; 'knn' - mean of 11 nearest neighbours determined by euclidian distance; 'dgd' - random imputation from a downshifted Gaussian distribution; and 'ami' - adaptive multiple imputation as detailed in the preprint.
 
 
 ### Mixed-species example
