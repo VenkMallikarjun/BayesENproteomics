@@ -52,9 +52,13 @@
 %
 %       nDB - Optional. Scalar number indicating number of databases used
 %       for peptide annotation. Defaults to 1.
+%       
+%       impute_method - Optional. String that specifies imputation method.
+%       Can be 'dgd' (downshifted Gaussian), 'bpca' (Bayesian PCA), 'knn' 
+%       (K-nearest neighbours) or 'ami' (adaptive multiple imputation).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [ProteinOutput,PathwayOutput] = BayesENproteomics(exp_peps,...
-    norm_peps,species,groupnum,donors,ptms,norm_method,mins,pep_fdr, nDB)
+    norm_peps,species,groupnum,donors,ptms,norm_method,mins,pep_fdr,nDB,impute_method)
 %% Defaults
 if nargin < 6
     ptms = {''};
@@ -62,20 +66,27 @@ if nargin < 6
     mins = [3,5];
     pep_fdr = 0.2;
     nDB = 1;
+    impute_method = 'ami';
 elseif nargin < 7
     norm_method = 'median';
     mins = [3,5];
     pep_fdr = 0.2;
     nDB = 1;
+    impute_method = 'ami';
 elseif nargin < 8
     mins = [3,5]; 
     pep_fdr = 0.2;
     nDB = 1;
+    impute_method = 'ami';
 elseif nargin < 9
     pep_fdr = 0.2;
     nDB = 1;
+    impute_method = 'ami';
 elseif nargin < 10
     nDB = 1;
+    impute_method = 'ami';
+elseif nargin < 11
+    impute_method = 'ami';
 end
 
 %% Load peptide lists (must be in working directory when function called)
@@ -105,9 +116,9 @@ fprintf('Done.\n')
     ProteinOutput.PTMs,...          %PTM-level output
     ProteinOutput.stats,....
     uniprotall]...
-    = DataProcessProtein(norm_peps2, exp_peps2,...                          %Necessary
+    = DataProcessProtein(norm_peps2, exp_peps2,...                         %Necessary
     norm_method,mins(1),donors,false,ptms,species,'BHFDR',...              %Optional (except species and donors)
-    'bayes','full',pep_fdr, nDB, false,true,[]);                               %Optional
+    'bayes','full',pep_fdr, nDB, false,true,[],impute_method);             %Optional
 
 if nargout == 2
     [PathwayOutput.Abds,...

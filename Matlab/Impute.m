@@ -14,19 +14,19 @@ switch N
             end
         end
         
-    case 'knn'  %knn using weighted mean of 3 nearest neighbours using euclidian distance - requires bioinfo toolbox
-        try Y = knnimpute(X,3);
+    case 'knn'  %knn using weighted mean of 11 nearest neighbours using euclidian distance - requires bioinfo toolbox
+        try Y = knnimpute(X,11);
         catch
-            Y = knnimpute(X',3)';
+            Y = knnimpute(X',11)';
         end
         
     case 'bpca' %Bayesian PCA to decompose matrix and reassemble missing values.
         % Requires package in Oba, S., Sato, M., Takemasa, I., Monden, M., Matsubara, K., and Ishii, S. A Bayesian Missing value estimation method, Bioinformatics 19, pp.2088-2096 (2003). [http://bioinformatics.oupjournals.org/cgi/content/abstract/19/16/2088?etoc]
         % Available here: http://ishiilab.jp/member/oba/tools/BPCAFill.html
         Y(isnan(Y)) = 999.0;
-        Y = BPCAfill(Y);
+        Y = BPCAfill(Y);        
         
-    case 'dgd'  %downshifted Gaussian imputation for each peptide
+    case 'dgd'
         vals = nanmean(X,2);
         sigmas = nanstd(X,0,2);
         mus = vals - (1.6 .* sigmas);

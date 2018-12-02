@@ -16,7 +16,8 @@
 function [ProteinAbundance, normedpepstonorm, InteractionTable, ModList,...
     PCA, uniprotall] = DataProcessProtein(wholepeptidelist, pepstonorm,...
     normmethod, pepmin, donorvector, ProteinGrouping, mods, organism,...
-    score, regmethod, model, scorethreshold, nDB, incSubject, EB, ContGroup)
+    score, regmethod, model, scorethreshold, nDB, incSubject, EB,...
+    ContGroup, impute_method)
 
 %% Step 0: setup variables
 %setup progress bar
@@ -311,13 +312,14 @@ temp_final = temp_final(1:q-1,:);
 temp_info = temp_info(1:q-1,:);
 PCA.NP.missing = isnan(temp_final); %Record indices of missing values
 
-%Impute missing values as random values drawn from a normal distribution
+%'dgd' - Impute missing values as random values drawn from a normal distribution
 %calculated from the mean and std of each peptide, median shifted
-%by -1.6 * std. For Bayesian Linear regression, missing values are imputed
+%by -1.6 * std. For 'ami', missing values are imputed
 %as part of the Gibbs sampler.
-if (~strcmp(normmethod,'none') && ~strcmp(regmethod,'bayes')) && ~strcmp(regmethod,'nnnn')
+%if (~strcmp(normmethod,'none') && ~strcmp(regmethod,'bayes')) && ~strcmp(regmethod,'nnnn')
 %if (~strcmp(normmethod,'none')) && ~strcmp(regmethod,'nnnn')
-    temp_final = Impute(temp_final, 'dgd');
+if (~strcmp(impute_method,'ami'))
+    temp_final = Impute(temp_final, impute_method);
     temp_final = temp_final(~isnan(temp_final(:,1)),:);
     temp_info = temp_info(~isnan(temp_final(:,1)),:);
 end
