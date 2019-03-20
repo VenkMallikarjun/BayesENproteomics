@@ -1,0 +1,268 @@
+,,,,MSC25:MEF75/MSC75:MEF25,MSC50:MEF50/MSC75:MEF25,MSC25:MEF75/MSC50:MEF50
+Reactome pathways,number,overUnder,pvalue,fdr,fdr,fdr
+Metabolism (R-MMU-1430728),27,+,4.75E-01,1.08E+00,9.50E-01,7.93E-01
+Immune System (R-MMU-168256),23,+,9.14E-01,1.02E+00,1.04E+00,9.82E-01
+Developmental Biology (R-MMU-1266738),20,-,2.15E-01,1.31E+00,1.00E+00,9.06E-01
+Formation of the cornified envelope (R-MMU-6809371),16,-,1.64E-01,1.33E+00,9.73E-01,7.42E-01
+Hemostasis (R-MMU-109582),16,-,4.84E-01,1.10E+00,1.10E+00,9.46E-01
+Keratinization (R-MMU-6805567),16,-,1.64E-01,1.29E+00,9.69E-01,7.32E-01
+Signal Transduction (R-MMU-162582),16,-,8.07E-01,1.04E+00,1.08E+00,9.44E-01
+Innate Immune System (R-MMU-168249),15,+,3.70E-01,9.24E-01,3.13E+00,9.01E-01
+"Platelet activation, signaling and aggregation (R-MMU-76002)",14,-,7.06E-01,1.03E+00,1.07E+00,7.94E-01
+Response to elevated platelet cytosolic Ca2+ (R-MMU-76005),12,-,5.36E-01,1.13E+00,1.06E+00,7.86E-01
+Platelet degranulation  (R-MMU-114608),12,-,5.36E-01,1.12E+00,1.06E+00,7.78E-01
+Metabolism of proteins (R-MMU-392499),11,-,1.92E-01,1.46E+00,1.00E+00,7.61E-01
+Post-translational protein modification (R-MMU-597592),10,-,1.62E-01,1.35E+00,1.05E+00,9.17E-01
+Neutrophil degranulation (R-MMU-6798695),10,0,1.00E+00,1.00E+00,1.05E+00,8.34E-01
+Extracellular matrix organization (R-MMU-1474244),10,-,5.97E-01,9.84E-01,1.06E+00,8.61E-01
+Muscle contraction (R-MMU-397014),9,-,9.42E-01,1.00E+00,1.08E+00,9.08E-01
+Metabolism of lipids (R-MMU-556833),9,+,2.00E-01,1.30E+00,1.07E+00,1.26E+00
+Degradation of the extracellular matrix (R-MMU-1474228),8,-,5.45E-01,1.00E+00,9.72E-01,9.92E-01
+Adaptive Immune System (R-MMU-1280218),8,-,5.01E-01,1.09E+00,9.72E-01,7.61E-01
+Post-translational protein phosphorylation (R-MMU-8957275),7,-,5.85E-01,1.01E+00,1.07E+00,9.35E-01
+Metabolism of carbohydrates (R-MMU-71387),7,-,8.61E-01,9.99E-01,9.68E-01,9.20E-01
+Vesicle-mediated transport (R-MMU-5653656),7,-,3.53E-01,9.07E-01,9.97E-01,8.90E-01
+Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs) (R-MMU-381426),7,-,5.85E-01,1.01E+00,1.06E+00,9.31E-01
+Striated Muscle Contraction (R-MMU-390522),7,-,7.10E-01,1.03E+00,1.08E+00,8.06E-01
+Transport of small molecules (R-MMU-382551),6,-,7.04E-01,1.03E+00,9.44E-01,1.03E+00
+Assembly of collagen fibrils and other multimeric structures (R-MMU-2022090),6,+,9.46E-01,1.00E+00,1.06E+00,7.52E-01
+Collagen formation (R-MMU-1474290),6,+,9.46E-01,9.99E-01,1.06E+00,7.44E-01
+Cellular responses to stress (R-MMU-2262752),6,-,2.23E-01,1.29E+00,9.47E-01,2.05E+00
+Signaling by Receptor Tyrosine Kinases (R-MMU-9006934),6,+,5.91E-01,1.01E+00,1.00E+00,7.09E-01
+The citric acid (TCA) cycle and respiratory electron transport (R-MMU-1428517),6,+,7.12E-01,1.03E+00,9.56E-01,9.09E-01
+Cellular responses to external stimuli (R-MMU-8953897),6,-,2.23E-01,1.27E+00,9.40E-01,1.91E+00
+Integrin cell surface interactions (R-MMU-216083),5,+,7.96E-01,1.05E+00,1.05E+00,7.07E-01
+Programmed Cell Death (R-MMU-5357801),5,-,9.31E-01,1.03E+00,1.23E+01,2.51E+00
+Apoptosis (R-MMU-109581),5,-,9.31E-01,1.03E+00,8.19E+00,2.01E+00
+ECM proteoglycans (R-MMU-3000178),5,-,8.92E-01,1.00E+00,1.10E+00,8.30E-01
+Detoxification of Reactive Oxygen Species (R-MMU-3299685),5,-,3.56E-01,9.06E-01,9.64E-01,7.32E-01
+Collagen degradation (R-MMU-1442490),5,-,9.22E-01,1.03E+00,1.11E+00,7.60E-01
+Binding and Uptake of Ligands by Scavenger Receptors (R-MMU-2173782),4,-,3.34E-01,1.10E+00,9.94E-01,8.70E-01
+Collagen chain trimerization (R-MMU-8948216),4,+,8.90E-01,1.01E+00,1.05E+00,7.24E-01
+Signaling by GPCR (R-MMU-372790),4,+,8.58E-01,1.01E+00,9.77E-01,9.58E+00
+Signaling by Rho GTPases (R-MMU-194315),4,-,3.14E-01,1.10E+00,9.32E-01,9.21E-01
+GPCR downstream signalling (R-MMU-388396),4,+,8.58E-01,1.00E+00,9.68E-01,4.79E+00
+Signaling by MET (R-MMU-6806834),4,+,5.08E-01,1.09E+00,9.71E-01,1.25E+00
+"Respiratory electron transport, ATP synthesis by chemiosmotic coupling, and heat production by uncoupling proteins. (R-MMU-163200)",4,-,4.08E-01,9.63E-01,1.28E+00,9.59E-01
+G alpha (i) signalling events (R-MMU-418594),4,+,8.58E-01,1.00E+00,9.59E-01,3.19E+00
+Collagen biosynthesis and modifying enzymes (R-MMU-1650814),4,+,8.90E-01,1.00E+00,1.04E+00,7.13E-01
+Apoptotic execution phase (R-MMU-75153),4,-,6.89E-01,1.03E+00,1.43E+00,2.24E+00
+Axon guidance (R-MMU-422475),4,-,9.78E-01,1.01E+00,1.15E+00,2.69E+00
+RHO GTPase Effectors (R-MMU-195258),4,-,3.14E-01,1.09E+00,9.24E-01,9.17E-01
+Glucose metabolism (R-MMU-70326),4,-,4.64E-01,1.08E+00,1.24E+00,9.51E-01
+MET activates PTK2 signaling (R-MMU-8874081),4,+,5.08E-01,1.08E+00,9.67E-01,1.21E+00
+Fatty acid metabolism (R-MMU-8978868),4,+,9.34E-01,1.00E+00,1.07E+00,9.24E-01
+MET promotes cell motility (R-MMU-8875878),4,+,5.08E-01,1.08E+00,9.63E-01,1.17E+00
+Apoptotic cleavage of cellular proteins (R-MMU-111465),4,-,6.89E-01,1.02E+00,1.38E+00,2.06E+00
+Scavenging of heme from plasma (R-MMU-2168880),4,-,3.34E-01,1.09E+00,9.87E-01,8.66E-01
+Fcgamma receptor (FCGR) dependent phagocytosis (R-MMU-2029480),3,+,5.97E-01,9.79E-01,1.33E+00,8.69E-01
+"Plasma lipoprotein assembly, remodeling, and clearance (R-MMU-174824)",3,+,7.86E-01,1.04E+00,9.51E-01,7.69E-01
+Gene expression (Transcription) (R-MMU-74160),3,-,9.87E-01,1.01E+00,1.08E+00,9.20E-01
+Respiratory electron transport (R-MMU-611105),3,-,5.43E-01,1.01E+00,1.21E+00,9.71E-01
+Glycolysis (R-MMU-70171),3,-,1.54E-01,1.37E+00,1.12E+00,7.82E-01
+TP53 Regulates Metabolic Genes (R-MMU-5628897),3,-,9.87E-01,1.00E+00,1.07E+00,9.16E-01
+Caspase-mediated cleavage of cytoskeletal proteins (R-MMU-264870),3,-,6.54E-01,9.87E-01,5.30E+00,2.25E+00
+Non-integrin membrane-ECM interactions (R-MMU-3000171),3,+,3.29E-01,1.11E+00,9.50E-01,7.58E-01
+Cell surface interactions at the vascular wall (R-MMU-202733),3,+,7.73E-01,1.03E+00,1.06E+00,7.57E-01
+RNA Polymerase II Transcription (R-MMU-73857),3,-,9.87E-01,9.98E-01,1.06E+00,9.13E-01
+Membrane Trafficking (R-MMU-199991),3,-,7.49E-01,1.02E+00,1.08E+00,9.89E-01
+Platelet Aggregation (Plug Formation) (R-MMU-76009),3,+,4.71E-01,1.09E+00,1.08E+00,7.13E-01
+Generic Transcription Pathway (R-MMU-212436),3,-,9.87E-01,9.95E-01,1.06E+00,9.09E-01
+Plasma lipoprotein remodeling (R-MMU-8963899),3,+,7.86E-01,1.04E+00,9.44E-01,7.64E-01
+Metabolism of vitamins and cofactors (R-MMU-196854),3,+,3.70E-01,9.32E-01,4.57E+00,7.55E-01
+Metabolism of amino acids and derivatives (R-MMU-71291),3,+,1.59E-01,1.37E+00,1.04E+00,2.18E+00
+Gluconeogenesis (R-MMU-70263),3,-,5.97E-01,9.73E-01,1.88E+01,8.20E-01
+GP1b-IX-V activation signalling (R-MMU-430116),3,-,6.31E-01,9.58E-01,1.05E+00,9.86E-01
+Immunoregulatory interactions between a Lymphoid and a non-Lymphoid cell (R-MMU-198933),3,+,3.29E-01,1.10E+00,9.43E-01,7.50E-01
+MAPK family signaling cascades (R-MMU-5683057),3,+,6.77E-01,1.02E+00,1.04E+00,9.67E-01
+Transcriptional Regulation by TP53 (R-MMU-3700989),3,-,9.87E-01,9.91E-01,1.05E+00,9.05E-01
+Regulation of actin dynamics for phagocytic cup formation (R-MMU-2029482),3,+,5.97E-01,9.67E-01,1.29E+00,8.64E-01
+Class A/1 (Rhodopsin-like receptors) (R-MMU-373076),2,+,9.53E-01,1.00E+00,1.09E+00,1.85E+00
+NCAM signaling for neurite out-growth (R-MMU-375165),2,-,7.38E-01,1.02E+00,9.66E-01,7.94E-01
+Visual phototransduction (R-MMU-2187338),2,+,8.44E-01,1.05E+00,1.11E+00,1.01E+00
+Organelle biogenesis and maintenance (R-MMU-1852241),2,-,2.71E-01,1.13E+00,9.78E-01,8.17E-01
+Mitochondrial Fatty Acid Beta-Oxidation (R-MMU-77289),2,+,9.84E-01,1.01E+00,1.08E+00,9.14E-01
+mitochondrial fatty acid beta-oxidation of saturated fatty acids (R-MMU-77286),2,+,9.84E-01,1.01E+00,1.08E+00,9.11E-01
+RHO GTPases activate PAKs (R-MMU-5627123),2,-,7.03E-02,9.38E+00,1.04E+00,2.35E+00
+MAPK1/MAPK3 signaling (R-MMU-5684996),2,-,6.23E-01,9.61E-01,1.22E+00,9.37E-01
+Signaling by PDGF (R-MMU-186797),2,-,7.38E-01,1.01E+00,9.58E-01,7.84E-01
+GPCR ligand binding (R-MMU-500792),2,+,9.53E-01,9.98E-01,1.09E+00,1.74E+00
+Smooth Muscle Contraction (R-MMU-445355),2,+,5.82E-01,1.02E+00,1.76E+00,2.06E+00
+Retinoid metabolism and transport (R-MMU-975634),2,+,8.44E-01,1.05E+00,1.09E+00,9.86E-01
+HDL remodeling (R-MMU-8964058),2,-,5.42E-01,1.01E+00,1.08E+00,9.12E-01
+Triglyceride metabolism (R-MMU-8979227),2,+,2.79E-01,1.15E+00,1.04E+00,7.74E-01
+Asparagine N-linked glycosylation (R-MMU-446203),2,-,1.45E-01,1.94E+00,1.10E+00,8.92E-01
+Triglyceride catabolism (R-MMU-163560),2,+,2.79E-01,1.13E+00,1.03E+00,7.65E-01
+MHC class II antigen presentation (R-MMU-2132295),2,-,3.06E-01,1.09E+00,1.08E+00,7.27E-01
+Pyruvate metabolism and Citric Acid (TCA) cycle (R-MMU-71406),2,+,6.73E-02,1.80E+01,1.07E+00,8.88E-01
+Peptide ligand-binding receptors (R-MMU-375276),2,+,9.53E-01,9.94E-01,1.08E+00,1.65E+00
+Glycosaminoglycan metabolism (R-MMU-1630316),2,+,9.37E-01,1.00E+00,1.19E+00,7.80E-01
+RAF/MAP kinase cascade (R-MMU-5673001),2,-,6.23E-01,9.56E-01,1.20E+00,9.34E-01
+Platelet Adhesion to exposed collagen (R-MMU-75892),2,+,5.95E-01,1.01E+00,1.09E+00,8.04E-01
+G alpha (q) signalling events (R-MMU-416476),2,+,9.53E-01,9.90E-01,1.07E+00,1.56E+00
+NCAM1 interactions (R-MMU-419037),2,-,7.38E-01,1.01E+00,9.51E-01,7.56E-01
+Cell junction organization (R-MMU-446728),2,-,3.98E-01,9.65E-01,9.26E-01,8.84E-01
+Toll-Like Receptors Cascades (R-MMU-168898),2,+,4.91E-01,1.07E+00,9.25E-01,9.43E-01
+Crosslinking of collagen fibrils (R-MMU-2243919),2,+,5.95E-01,1.01E+00,1.08E+00,7.99E-01
+Plasma lipoprotein assembly (R-MMU-8963898),2,+,8.44E-01,1.04E+00,1.08E+00,9.64E-01
+Anchoring fibril formation (R-MMU-2214320),2,+,5.95E-01,1.00E+00,1.07E+00,7.95E-01
+Cell Cycle (R-MMU-1640170),2,-,8.13E-01,1.04E+00,9.44E-01,8.92E-01
+Chylomicron assembly (R-MMU-8963888),2,+,8.44E-01,1.04E+00,1.07E+00,9.43E-01
+Cell-Cell communication (R-MMU-1500931),2,-,3.98E-01,9.56E-01,9.19E-01,8.79E-01
+Chylomicron remodeling (R-MMU-8963901),2,+,8.44E-01,1.03E+00,1.05E+00,9.23E-01
+GPVI-mediated activation cascade (R-MMU-114604),2,+,5.95E-01,9.93E-01,1.07E+00,7.90E-01
+MAP2K and MAPK activation (R-MMU-5674135),2,-,6.23E-01,9.50E-01,1.18E+00,9.30E-01
+Metabolism of steroids (R-MMU-8957322),2,+,5.95E-01,9.87E-01,1.05E+00,1.10E+00
+Metabolism of fat-soluble vitamins (R-MMU-6806667),2,+,8.44E-01,1.03E+00,1.04E+00,9.03E-01
+Ion influx/efflux at host-pathogen interface (R-MMU-6803544),1,+,2.09E-01,1.33E+00,1.06E+00,7.66E-01
+Interferon Signaling (R-MMU-913531),1,-,9.93E-02,4.42E+00,3.19E+00,8.07E-01
+Chondroitin sulfate/dermatan sulfate metabolism (R-MMU-1793185),1,-,5.57E-01,1.02E+00,1.20E+00,1.12E+00
+Glycogen breakdown (glycogenolysis) (R-MMU-70221),1,+,3.71E-01,9.18E-01,9.81E-01,1.16E+00
+Chk1/Chk2(Cds1) mediated inactivation of Cyclin B:Cdk1 complex (R-MMU-75035),1,+,5.39E-01,1.12E+00,1.06E+00,8.85E-01
+mitochondrial fatty acid beta-oxidation of unsaturated fatty acids (R-MMU-77288),1,-,8.89E-01,1.02E+00,1.00E+00,7.73E-01
+TP53 Regulates Transcription of Cell Cycle Genes (R-MMU-6791312),1,+,5.39E-01,1.11E+00,1.05E+00,8.68E-01
+Antigen activates B Cell Receptor (BCR) leading to generation of second messengers (R-MMU-983695),1,-,8.01E-01,1.05E+00,9.33E-01,8.62E-01
+Beta oxidation of myristoyl-CoA to lauroyl-CoA (R-MMU-77285),1,+,8.67E-01,1.00E+00,1.20E+00,7.83E-01
+Recruitment of mitotic centrosome proteins and complexes (R-MMU-380270),1,-,3.42E-01,1.10E+00,1.04E+00,8.74E-01
+Regulation of PLK1 Activity at G2/M Transition (R-MMU-2565942),1,-,3.42E-01,1.09E+00,1.04E+00,8.67E-01
+Heparan sulfate/heparin (HS-GAG) metabolism (R-MMU-1638091),1,-,5.57E-01,1.01E+00,1.18E+00,1.09E+00
+AURKA Activation by TPX2 (R-MMU-8854518),1,-,3.42E-01,1.07E+00,1.03E+00,8.60E-01
+Biological oxidations (R-MMU-211859),1,-,9.37E-02,6.25E+00,3.71E+00,7.70E-01
+CS/DS degradation (R-MMU-2024101),1,-,5.57E-01,1.01E+00,1.17E+00,1.06E+00
+COPI-mediated anterograde transport (R-MMU-6807878),1,-,3.42E-01,1.06E+00,1.03E+00,8.53E-01
+Apoptotic cleavage of cell adhesion  proteins (R-MMU-351906),1,-,9.78E-01,1.01E+00,1.00E+00,9.35E-01
+GRB2:SOS provides linkage to MAPK signaling for Integrins  (R-MMU-354194),1,+,6.15E-01,9.89E-01,1.27E+00,7.49E-01
+ABC-family proteins mediated transport (R-MMU-382556),1,-,2.88E-01,1.15E+00,1.08E+00,7.92E-01
+Integrin alphaIIb beta3 signaling (R-MMU-354192),1,+,6.15E-01,9.83E-01,1.25E+00,7.37E-01
+Beta oxidation of lauroyl-CoA to decanoyl-CoA-CoA (R-MMU-77310),1,+,8.67E-01,9.98E-01,1.18E+00,7.78E-01
+Complex I biogenesis (R-MMU-6799198),1,-,8.83E-02,7.86E+00,9.39E-01,2.36E+00
+Trafficking and processing of endosomal TLR (R-MMU-1679131),1,-,6.15E-01,9.77E-01,1.08E+00,9.16E-01
+Synthesis of Ketone Bodies (R-MMU-77111),1,+,1.31E-01,2.34E+00,1.06E+00,1.49E+00
+Signaling by ROBO receptors (R-MMU-376176),1,-,9.33E-01,1.03E+00,1.01E+00,7.92E-01
+Antigen processing-Cross presentation (R-MMU-1236975),1,-,2.64E-01,1.24E+00,1.23E+00,9.43E-01
+ER-Phagosome pathway (R-MMU-1236974),1,-,2.64E-01,1.21E+00,1.20E+00,9.39E-01
+Utilization of Ketone Bodies (R-MMU-77108),1,+,1.31E-01,2.19E+00,1.05E+00,1.41E+00
+Loss of Nlp from mitotic centrosomes (R-MMU-380259),1,-,3.42E-01,1.05E+00,1.03E+00,8.46E-01
+Cristae formation (R-MMU-8949613),1,-,5.39E-01,1.10E+00,9.42E-01,9.66E-01
+Signaling by WNT (R-MMU-195721),1,-,9.33E-01,1.02E+00,9.99E-01,7.86E-01
+Synthesis of 12-eicosatetraenoic acid derivatives (R-MMU-2142712),1,-,2.52E-01,1.37E+00,9.55E-01,7.94E-01
+Bile acid and bile salt metabolism (R-MMU-194068),1,+,8.45E-01,1.03E+00,1.08E+00,8.03E-01
+Erythrocytes take up carbon dioxide and release oxygen (R-MMU-1237044),1,-,1.46E-01,1.86E+00,1.19E+00,7.99E-01
+Keratan sulfate/keratin metabolism (R-MMU-1638074),1,+,4.85E-01,1.09E+00,9.66E-01,8.23E-01
+Cell Cycle Checkpoints (R-MMU-69620),1,+,5.39E-01,1.09E+00,1.04E+00,8.51E-01
+A tetrasaccharide linker sequence is required for GAG synthesis (R-MMU-1971475),1,-,5.57E-01,9.99E-01,1.15E+00,1.03E+00
+PCP/CE pathway (R-MMU-4086400),1,-,9.33E-01,1.02E+00,9.93E-01,7.81E-01
+Formation of ATP by chemiosmotic coupling (R-MMU-163210),1,-,5.39E-01,1.08E+00,9.35E-01,9.62E-01
+Dissolution of Fibrin Clot (R-MMU-75205),1,-,2.19E-01,1.30E+00,1.76E+00,7.73E-01
+Intrinsic Pathway for Apoptosis (R-MMU-109606),1,+,5.39E-01,1.07E+00,1.03E+00,8.34E-01
+Signaling by the B Cell Receptor (BCR) (R-MMU-983705),1,-,8.01E-01,1.04E+00,9.25E-01,8.55E-01
+Metabolism of RNA (R-MMU-8953854),1,+,1.54E-01,1.72E+00,2.92E+00,8.88E-01
+ChREBP activates metabolic gene expression (R-MMU-163765),1,+,1.99E-01,1.47E+00,1.72E+00,9.36E-01
+Formyl peptide receptors bind formyl peptides and many other ligands (R-MMU-444473),1,+,9.93E-02,3.79E+00,6.63E+00,7.37E-01
+Mitochondrial biogenesis (R-MMU-1592230),1,-,5.39E-01,1.07E+00,9.27E-01,9.58E-01
+SEMA3A-Plexin repulsion signaling by inhibiting Integrin adhesion (R-MMU-399955),1,+,6.15E-01,9.72E-01,1.23E+00,7.25E-01
+Reversible hydration of carbon dioxide (R-MMU-1475029),1,+,2.64E-01,1.19E+00,9.47E-01,7.30E-01
+Elastic fibre formation (R-MMU-1566948),1,+,7.59E-01,1.02E+00,1.08E+00,8.85E-01
+Calnexin/calreticulin cycle (R-MMU-901042),1,-,2.64E-01,1.17E+00,1.17E+00,9.34E-01
+MAPK6/MAPK4 signaling (R-MMU-5687128),1,+,1.54E-01,1.65E+00,2.70E+00,8.84E-01
+Plasma lipoprotein clearance (R-MMU-8964043),1,-,2.88E-01,1.13E+00,1.07E+00,7.82E-01
+Butyrophilin (BTN) family interactions (R-MMU-8851680),1,-,4.02E-01,9.58E-01,1.20E+00,9.21E-01
+Laminin interactions (R-MMU-3000157),1,-,7.16E-01,1.03E+00,1.17E+00,7.44E-01
+O2/CO2 exchange in erythrocytes (R-MMU-1480926),1,-,1.46E-01,1.78E+00,1.16E+00,7.94E-01
+Citric acid cycle (TCA cycle) (R-MMU-71403),1,+,3.15E-01,1.08E+00,1.12E+00,1.31E+00
+Cell-extracellular matrix interactions (R-MMU-446353),1,-,1.11E-01,2.70E+00,1.40E+00,7.66E-01
+Branched-chain amino acid catabolism (R-MMU-70895),1,+,1.31E-01,2.06E+00,1.05E+00,1.35E+00
+"Transport of vitamins, nucleosides, and related molecules (R-MMU-425397)",1,+,8.45E-01,1.02E+00,1.07E+00,7.89E-01
+Metabolism of nucleotides (R-MMU-15869),1,-,2.52E-01,1.35E+00,9.38E-01,7.90E-01
+Dermatan sulfate biosynthesis (R-MMU-2022923),1,-,5.57E-01,9.92E-01,1.13E+00,1.00E+00
+Intracellular oxygen transport (R-MMU-8981607),1,+,8.01E-01,1.04E+00,1.20E+00,8.35E-01
+RHO GTPases activate PKNs (R-MMU-5625740),1,+,5.39E-01,1.06E+00,1.02E+00,8.18E-01
+Golgi-to-ER retrograde transport (R-MMU-8856688),1,-,3.42E-01,1.04E+00,1.02E+00,8.39E-01
+N-glycan trimming in the ER and Calnexin/Calreticulin cycle (R-MMU-532668),1,-,2.64E-01,1.15E+00,1.14E+00,9.30E-01
+Initial triggering of complement (R-MMU-166663),1,+,7.37E-01,1.05E+00,1.11E+00,8.32E-01
+Histidine catabolism (R-MMU-70921),1,+,2.52E-01,1.32E+00,1.07E+00,1.23E+00
+M Phase (R-MMU-68886),1,-,3.42E-01,1.03E+00,1.02E+00,8.25E-01
+Translocation of SLC2A4 (GLUT4) to the plasma membrane (R-MMU-1445148),1,+,5.39E-01,1.05E+00,1.00E+00,8.03E-01
+TP53 Regulates Transcription of Genes Involved in G2 Cell Cycle Arrest (R-MMU-6804114),1,+,5.39E-01,1.04E+00,9.93E-01,7.89E-01
+Cytokine Signaling in Immune system (R-MMU-1280215),1,-,9.93E-02,3.31E+00,2.51E+00,7.96E-01
+Complement cascade (R-MMU-166658),1,+,7.37E-01,1.05E+00,1.11E+00,8.19E-01
+Transferrin endocytosis and recycling (R-MMU-917977),1,-,8.23E-01,1.05E+00,9.99E-01,8.13E-01
+Chondroitin sulfate biosynthesis (R-MMU-2022870),1,-,5.57E-01,9.86E-01,1.12E+00,9.77E-01
+Activation of BH3-only proteins (R-MMU-114452),1,+,5.39E-01,1.03E+00,9.82E-01,7.75E-01
+Transport of organic anions (R-MMU-879518),1,+,8.45E-01,1.02E+00,1.07E+00,7.85E-01
+HSP90 chaperone cycle for steroid hormone receptors (SHR) (R-MMU-3371497),1,-,3.42E-01,1.02E+00,1.01E+00,8.12E-01
+Anchoring of the basal body to the plasma membrane (R-MMU-5620912),1,-,3.42E-01,1.00E+00,1.01E+00,8.06E-01
+Mitotic Prometaphase (R-MMU-68877),1,-,3.42E-01,9.93E-01,1.00E+00,8.00E-01
+RHO GTPases Activate Formins (R-MMU-5663220),1,-,9.33E-01,1.01E+00,9.86E-01,7.76E-01
+Peroxisomal protein import (R-MMU-9033241),1,+,9.33E-01,1.01E+00,1.36E+00,1.26E+00
+Semaphorin interactions (R-MMU-373755),1,+,6.15E-01,9.66E-01,1.21E+00,7.13E-01
+Formation of Fibrin Clot (Clotting Cascade) (R-MMU-140877),1,-,1.18E-01,2.42E+00,1.18E+00,7.89E-01
+CD22 mediated BCR regulation (R-MMU-5690714),1,-,8.01E-01,1.03E+00,9.17E-01,8.47E-01
+HDL clearance (R-MMU-8964011),1,-,2.88E-01,1.12E+00,1.07E+00,7.73E-01
+Vitamin B5 (pantothenate) metabolism (R-MMU-199220),1,+,1.99E-01,1.43E+00,1.65E+00,9.32E-01
+Scavenging by Class A Receptors (R-MMU-3000480),1,-,2.88E-01,1.10E+00,1.06E+00,7.65E-01
+SLC-mediated transmembrane transport (R-MMU-425407),1,+,8.45E-01,1.01E+00,1.06E+00,7.80E-01
+Integration of energy metabolism (R-MMU-163685),1,+,1.99E-01,1.40E+00,1.58E+00,9.28E-01
+ER to Golgi Anterograde Transport (R-MMU-199977),1,-,3.42E-01,9.82E-01,1.00E+00,7.94E-01
+Purine catabolism (R-MMU-74259),1,-,2.52E-01,1.29E+00,9.30E-01,7.85E-01
+Erythrocytes take up oxygen and release carbon dioxide (R-MMU-1247673),1,-,1.46E-01,1.70E+00,1.14E+00,7.76E-01
+Toll Like Receptor 9 (TLR9) Cascade (R-MMU-168138),1,+,1.39E-01,1.95E+00,1.70E+00,9.85E-01
+Phase I - Functionalization of compounds (R-MMU-211945),1,-,9.37E-02,5.00E+00,3.30E+00,7.63E-01
+Keratan sulfate degradation (R-MMU-2022857),1,+,4.85E-01,1.08E+00,9.59E-01,8.19E-01
+HDL assembly (R-MMU-8963896),1,-,2.88E-01,1.08E+00,1.06E+00,7.56E-01
+Keratan sulfate biosynthesis (R-MMU-2022854),1,+,4.85E-01,1.07E+00,9.52E-01,8.14E-01
+Integrin signaling (R-MMU-9006921),1,+,6.15E-01,9.60E-01,1.19E+00,7.03E-01
+Metabolism of polyamines (R-MMU-351202),1,-,8.45E-01,1.01E+00,1.05E+00,9.15E-01
+Pyruvate metabolism (R-MMU-70268),1,+,1.11E-01,2.48E+00,4.01E+00,8.09E-01
+AUF1 (hnRNP D0) binds and destabilizes mRNA (R-MMU-450408),1,+,1.54E-01,1.58E+00,2.34E+00,8.79E-01
+Scavenging by Class B Receptors (R-MMU-3000471),1,-,2.88E-01,1.07E+00,1.05E+00,7.48E-01
+Cilium Assembly (R-MMU-5617833),1,-,3.42E-01,9.72E-01,9.97E-01,7.88E-01
+Negative regulation of MAPK pathway (R-MMU-5675221),1,-,2.30E-01,1.28E+00,9.92E-01,7.62E-01
+Synthesis of 15-eicosatetraenoic acid derivatives (R-MMU-2142770),1,-,2.52E-01,1.27E+00,9.21E-01,7.81E-01
+Metabolism of water-soluble vitamins and cofactors (R-MMU-196849),1,+,1.99E-01,1.36E+00,1.53E+00,9.25E-01
+Creatine metabolism (R-MMU-71288),1,-,8.45E-01,1.00E+00,1.04E+00,9.11E-01
+G2/M Checkpoints (R-MMU-69481),1,+,5.39E-01,1.03E+00,9.72E-01,7.61E-01
+Antiviral mechanism by IFN-stimulated genes (R-MMU-1169410),1,-,9.93E-02,2.95E+00,2.19E+00,7.86E-01
+Creation of C4 and C2 activators (R-MMU-166786),1,+,7.37E-01,1.04E+00,1.10E+00,7.82E-01
+"Antigen Presentation: Folding, assembly and peptide loading of class I MHC (R-MMU-983170)",1,-,2.64E-01,1.14E+00,1.11E+00,9.26E-01
+Fatty acyl-CoA biosynthesis (R-MMU-75105),1,+,1.99E-01,1.33E+00,1.47E+00,9.21E-01
+p130Cas linkage to MAPK signaling for integrins (R-MMU-372708),1,+,6.15E-01,9.55E-01,1.17E+00,6.92E-01
+Nucleobase catabolism (R-MMU-8956319),1,-,2.52E-01,1.25E+00,9.13E-01,7.76E-01
+Recycling of bile acids and salts (R-MMU-159418),1,+,8.45E-01,9.98E-01,1.06E+00,7.71E-01
+Mitotic G2-G2/M phases (R-MMU-453274),1,-,3.42E-01,9.62E-01,9.93E-01,7.76E-01
+Type I hemidesmosome assembly (R-MMU-446107),1,+,6.96E-01,1.03E+00,1.07E+00,8.75E-01
+Intra-Golgi and retrograde Golgi-to-ER traffic (R-MMU-6811442),1,-,3.42E-01,9.52E-01,9.89E-01,7.70E-01
+Molecules associated with elastic fibres (R-MMU-2129379),1,+,7.59E-01,1.02E+00,1.05E+00,8.80E-01
+ISG15 antiviral mechanism (R-MMU-1169408),1,-,9.93E-02,2.65E+00,2.06E+00,7.76E-01
+Class I MHC mediated antigen processing & presentation (R-MMU-983169),1,-,2.64E-01,1.12E+00,1.09E+00,9.22E-01
+G2/M DNA damage checkpoint (R-MMU-69473),1,+,5.39E-01,1.02E+00,9.62E-01,7.48E-01
+Classical antibody-mediated complement activation (R-MMU-173623),1,+,7.37E-01,1.04E+00,1.09E+00,7.64E-01
+"Cell Cycle, Mitotic (R-MMU-69278)",1,-,3.42E-01,9.42E-01,9.85E-01,7.59E-01
+Iron uptake and transport (R-MMU-917937),1,-,8.23E-01,1.04E+00,9.92E-01,8.09E-01
+G2/M Transition (R-MMU-69275),1,-,3.42E-01,9.32E-01,9.81E-01,7.53E-01
+Protein methylation (R-MMU-8876725),1,-,3.01E-01,1.09E+00,1.15E+00,9.08E-01
+Vitamin D (calciferol) metabolism (R-MMU-196791),1,+,5.76E-01,1.01E+00,1.18E+00,1.00E+00
+Beta oxidation of octanoyl-CoA to hexanoyl-CoA (R-MMU-77348),1,-,8.89E-01,1.01E+00,9.91E-01,7.59E-01
+Beta oxidation of decanoyl-CoA to octanoyl-CoA-CoA (R-MMU-77346),1,-,8.89E-01,1.01E+00,9.82E-01,7.52E-01
+COPI-independent Golgi-to-ER retrograde traffic (R-MMU-6811436),1,-,3.42E-01,9.23E-01,9.77E-01,7.48E-01
+Arachidonic acid metabolism (R-MMU-2142753),1,-,2.52E-01,1.22E+00,9.05E-01,7.72E-01
+Transport to the Golgi and subsequent modification (R-MMU-948021),1,-,3.42E-01,9.14E-01,9.73E-01,7.42E-01
+Clathrin-mediated endocytosis (R-MMU-8856828),1,-,8.23E-01,1.04E+00,9.85E-01,8.04E-01
+Cargo recognition for clathrin-mediated endocytosis (R-MMU-8856825),1,-,8.23E-01,1.03E+00,9.79E-01,8.00E-01
+ABC transporters in lipid homeostasis (R-MMU-1369062),1,-,2.88E-01,1.05E+00,1.04E+00,7.39E-01
+Ketone body metabolism (R-MMU-74182),1,+,1.31E-01,1.95E+00,1.04E+00,1.29E+00
+Beta-catenin independent WNT signaling (R-MMU-3858494),1,-,9.33E-01,1.00E+00,9.80E-01,7.71E-01
+Intrinsic Pathway of Fibrin Clot Formation (R-MMU-140837),1,-,1.18E-01,2.24E+00,1.15E+00,7.82E-01
+Regulation of Complement cascade (R-MMU-977606),1,+,7.37E-01,1.03E+00,1.09E+00,7.37E-01
+Glycogen metabolism (R-MMU-8982491),1,+,3.71E-01,9.10E-01,9.71E-01,1.12E+00
+Signaling by VEGF (R-MMU-194138),1,+,1.54E-01,1.53E+00,1.95E+00,8.71E-01
+Activation of BAD and translocation to mitochondria  (R-MMU-111447),1,+,5.39E-01,1.01E+00,9.52E-01,7.35E-01
+VEGFA-VEGFR2 Pathway (R-MMU-4420097),1,+,1.54E-01,1.47E+00,1.85E+00,8.67E-01
+Recruitment of NuMA to mitotic centrosomes (R-MMU-380320),1,-,3.42E-01,9.05E-01,9.70E-01,7.32E-01
+Antimicrobial peptides (R-MMU-6803157),1,+,2.09E-01,1.30E+00,1.04E+00,7.57E-01
+Regulation of mRNA stability by proteins that bind AU-rich elements (R-MMU-450531),1,+,1.54E-01,1.42E+00,1.75E+00,8.63E-01
+Centrosome maturation (R-MMU-380287),1,-,3.42E-01,8.96E-01,9.66E-01,7.27E-01
+Loss of proteins required for interphase microtubule organizationáfrom the centrosome (R-MMU-380284),1,-,3.42E-01,8.87E-01,9.62E-01,7.22E-01
+Role of phospholipids in phagocytosis (R-MMU-2029485),1,+,7.37E-01,1.03E+00,1.08E+00,7.17E-01
+"Histidine, lysine, phenylalanine, tyrosine, proline and tryptophan catabolism (R-MMU-6788656)",1,+,2.52E-01,1.20E+00,1.06E+00,1.19E+00
+FCGR activation (R-MMU-2029481),1,+,7.37E-01,1.02E+00,1.08E+00,7.12E-01
