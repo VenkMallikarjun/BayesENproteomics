@@ -27,9 +27,9 @@ Where:
   
   - PathwayOutput = Structure containing Reactome pathway-level quantiifcation.
   
-  * exp_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used in quantification (organised into Progenesis format).
+  * exp_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used in quantification (organised into Progenesis format; for quantification include only Raw Abundances, do not include Spectral Counts or Normalised Abundances).
   
-  * norm_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used for normalisation (organised into Progenesis format). Can be same as exp_peps if normalisation is to be performed against entire dataset.
+  * norm_peps = string containing name and extension (e.g. 'name.csv') of file containing quantification and details for peptides to be used for normalisation (organised into Progenesis format). Can be same as exp_peps if normalisation is to be performed against entire dataset. File referenced must have the same number of columns as `exp_peps`.
   
   * species = string denoting species used. Can either be 'mouse', 'human' or a string containing a UniProt proteome ID (e.g. 'UP000002281' for Equus caballus). 
   
