@@ -35,7 +35,7 @@ Where:
   
   * groupnum = number of experimental treatment conditions, including control.
   
-  * donors = numerical row vector containing numbers for each sample denoting which donor a given sample was derived from. E.g. 8 samples from 4 donors, donors = [1,2,3,4,1,2,3,4]; If set to false will assume that each sample comes from a separate unique donor with no pairing between conditions. Enter a vector of ones if donor variability is suspected to be negligible (E.g. for cell lines or 100% inbred mouse lines).
+  * donors = numerical row vector containing numbers for each sample denoting which donor a given sample was derived from. E.g. 8 samples from 4 donors, donors = [1,2,3,4,1,2,3,4]; If set to false will assume that each sample comes from a separate unique donor with no pairing between conditions. Enter a vector of ones if donor variability is suspected to be negligible (E.g. for cell lines).
   
   * ptms = Optional. Cell array of strings containing PTMs to look for spelt as they are in exp_peps. E.g. {'Phospho', 'Oxidation'}. Defaults to {''}.
   
