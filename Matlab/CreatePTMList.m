@@ -69,7 +69,7 @@ n = 3;
 
 for i = 1:PTMLength
     ModPep = PTMList(i,1);
-    
+   
     %Skip over peptides whose relative mod abundances have already been
     %calculated.
     try if isequal(ModPep, RMAList(n-1,1))
@@ -115,6 +115,7 @@ for i = 1:PTMLength
     %    ModPepnoDBID = {ModPepnoDBID(1,4:end)};
     %end
     uniprotposition = strcmp(uniprottable(:,upcol), ModPepnoDBID);
+    
     if sum(uniprotposition,1) > 0
         ProtSeq = uniprottable(uniprotposition,11);
         UniProtID = uniprottable(uniprotposition,1);
@@ -132,7 +133,7 @@ for i = 1:PTMLength
     jj = 1;
     
     %Find all modded peptides belonging to protein specificed in ModPep.
-    for kk = 3:1:PTMLength;
+    for kk = 3:1:PTMLength
         if strcmp(PTMList(kk,1),char(ModPep))
             switch reg
                 case 'bayes'; ModdedPepsPerProtein(jj,1:6 + GroupNum*4) = PTMList(kk,:);
@@ -259,6 +260,7 @@ for i = 1:PTMLength
             ModProtStats = cell(MPPPLength,GroupNum*3);
         end
         peps = ' [';
+        score = NaN;
         for bb = 1:MPPPLength 
             switch reg
                 case 'bayes', index = cell2mat(ModdedPepsPerProtein(bb,end-2));
@@ -277,8 +279,15 @@ for i = 1:PTMLength
                 peps = cat(2,peps,...
                     num2str(cell2mat(ModdedPepsPerProtein(bb,5))),'] ',...
                     char(ModdedPepsPerProtein(bb,3)),'; [');
+                
+                if isequal({cell2mat(ModdedPepsPerProtein(bb,4))},{'---'})
+                    score(end+1,1) = 0;
+                else
+                    score(end+1,1) = str2double(cell2mat(ModdedPepsPerProtein(bb,4)));
+                end
             end
         end
+        score = nanmean(score,1);
         
         %Calculate relative mod abundances per sample
         if ~isempty(ModProtAbundances)
@@ -333,7 +342,7 @@ for i = 1:PTMLength
             RMAList(n,4) = DF;   %Unmodified degrees of freedom.
             RMAList(n,5) = {ProtSeqChar(1,num)}; %Modified residue.
             RMAList(n,6+GroupNum:9+GroupNum) = [protein{1,1},...
-                protein{1,2}, {GOIDs}, {title}];
+                protein{1,2}, {score}, {title}];
             n = n + 1;
         end       
     end
@@ -348,7 +357,7 @@ RMAList(2,6:5+GroupNum) = GroupList;
 RMAList{1,6} = 'RELATIVE PTM LOG2(FOLD-CHANGE)';
 RMAList{1,6+GroupNum} = 'UNIPROT ID';
 RMAList{1,7+GroupNum} = 'PROTEIN NAME';
-RMAList{1,8+GroupNum} = 'GOIDs';
+RMAList{1,8+GroupNum} = 'MASCOT SCORE';
 RMAList{1,9+GroupNum} = 'SITE TITLE FOR GRAPHS';
 if strcmp(reg,'bayes')  || strcmp(reg, 'ME')
     RMAList(2,10+GroupNum:9+GroupNum*4) = repmat(GroupList,1,3);
