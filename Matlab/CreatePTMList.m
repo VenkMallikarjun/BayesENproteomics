@@ -57,11 +57,14 @@ for index = 2:PTMLength
     end
 end   
 PTMLength = index - 1;
+RMAList = cell(PTMLength, 10 + GroupNum*4);
+%{
 switch reg
     case 'bayes'; RMAList = cell(PTMLength, 10 + GroupNum*4);
     case 'ME'; RMAList = cell(PTMLength, 10 + GroupNum*4);
     otherwise; RMAList = cell(PTMLength, 9 + GroupNum);
 end
+%}
 ProtList = cell(PTMLength, 7 + GroupNum);
 AllProtAbundances = zeros(1,GroupNum);
 iiii = 3;
@@ -313,14 +316,18 @@ for i = 1:PTMLength
             Abds = nanmedian(Abds,1);
             if ~strcmp(reg, 'bayes') && ~strcmp(reg, 'ME')
                 PTMAbds_final = zeros(1,GroupNum);
+                PTMstd_final = zeros(1,GroupNum);
                 for zz = 1:GroupNum
-                    PTMAbds_final(1,zz) = nanmean(Abds(1,strcmp(GroupList,...
+                    PTMAbds_final(1,zz) = nanmean(Abds(1,strcmp(normedpeplist(2,RA:RA-1+w),...
                         GroupList(zz))),2);
+                    PTMstd_final(1,zz) = nanstd(Abds(1,strcmp(normedpeplist(2,RA:RA-1+w),...
+                        GroupList(zz))),0,2)./sqrt(sum(strcmp(normedpeplist(2,RA:RA-1+w),GroupList(zz)),2)); 
                 end
                 ctrl = repmat(PTMAbds_final(:,1), 1, GroupNum);
                 PTMAbds_final = PTMAbds_final - ctrl; %Get log2(fold changes)
                 %Normalise PTM fold changes to protein abundance fold changes
                 PTMAbds_final = PTMAbds_final - AllProtAbundances(1,:);
+                RMAList(n,10+GroupNum:9+2*GroupNum) = num2cell(PTMstd_final);
             else
                 PTMAbds_final = Abds;% - AllProtAbundances(1,:);
                 if strcmp(reg, 'bayes') || strcmp(reg, 'ME')
@@ -359,12 +366,12 @@ RMAList{1,6+GroupNum} = 'UNIPROT ID';
 RMAList{1,7+GroupNum} = 'PROTEIN NAME';
 RMAList{1,8+GroupNum} = 'MASCOT SCORE';
 RMAList{1,9+GroupNum} = 'SITE TITLE FOR GRAPHS';
-if strcmp(reg,'bayes')  || strcmp(reg, 'ME')
+%if strcmp(reg,'bayes')  || strcmp(reg, 'ME')
     RMAList(2,10+GroupNum:9+GroupNum*4) = repmat(GroupList,1,3);
     RMAList(1,10+GroupNum) = {'SE'};
     RMAList(1,10+GroupNum*2) = {'P-VALUE'};
     RMAList(1,10+GroupNum*3) = {'FDR-ADJUSTED P-VALUE'};
-end
+%end
 
 RMALength = size(RMAList,1);
 for index = 3:RMALength
